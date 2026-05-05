@@ -2,7 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Public pages
 Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
+
+// User pages
+
+// Admin pages
+Route::get('/admin/categories', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories');
+Route::get('/admin/categories/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
+Route::post('/admin/categories', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('categories.store');
+
 
 Route::get('/dashboard', function () {
     return view('userzone.dashboard');
