@@ -8,6 +8,8 @@ Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name
 Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category}', [\App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
 
+Route::get('/faqs', [\App\Http\Controllers\FaqController::class, 'index'])->name('faqs.index');
+
 // User pages
 
 // Admin pages
