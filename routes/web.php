@@ -15,6 +15,7 @@ Route::get('/faqs', [\App\Http\Controllers\FaqController::class, 'index'])->name
 // Admin pages
 Route::prefix('admin')->name('admin.')->group( function() {
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except(['show']);
+    Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)->except(['show']);
 });
 
 Route::get('/dashboard', function () {

@@ -9,4 +9,6 @@ class Faq extends Model
 {
     /** @use HasFactory<\Database\Factories\FaqFactory> */
     use HasFactory;
+
+    protected $fillable = ['question', 'answer'];
 }
