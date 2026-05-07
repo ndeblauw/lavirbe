@@ -16,4 +16,9 @@ class Category extends Model
     {
         return $this->hasMany(Article::class, 'category_id', 'id');
     }
+
+    function faqs()
+    {
+        return $this->hasMany(Faq::class, 'category_id', 'id');
+    }
 }
