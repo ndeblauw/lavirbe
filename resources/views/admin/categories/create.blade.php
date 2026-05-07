@@ -2,9 +2,7 @@
 <form action="/admin/categories" method="post">
     @csrf
 
-    <label for="name">Category name</label>
-    <input type="text" name="name" placeholder="category name" value="{{old('name')}}">
-    @error('name') <div style="color: red"> {{ $message }} </div> @enderror
+    <x-form-textinput name="name" label="Category name" placeholder="category name"/>
 
     <button type="submit">Create</button>
 </form>

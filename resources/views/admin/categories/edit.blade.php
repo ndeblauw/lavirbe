@@ -3,9 +3,7 @@
     @csrf
     @method('put')
 
-    <label for="name">Category name</label>
-    <input type="text" name="name" placeholder="category name" value="{{old('name', $category->name)}}">
-    @error('name') <div style="color: red"> {{ $message }} </div> @enderror
+    <x-form-textinput name="name" label="Category name" placeholder="category name" value="{{$category->name}}"/>
 
     <button type="submit">Update</button>
 </form>
