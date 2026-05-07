@@ -13,6 +13,7 @@ Route::get('/admin/categories/create', [\App\Http\Controllers\Admin\CategoryCont
 Route::post('/admin/categories', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('categories.store');
 Route::get('/admin/categories/{category}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('categories.edit');
 Route::put('/admin/categories/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('categories.update');
+Route::delete('/admin/categories/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('categories.delete');
 
 Route::get('/dashboard', function () {
     return view('userzone.dashboard');

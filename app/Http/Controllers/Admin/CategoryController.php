@@ -60,4 +60,13 @@ class CategoryController extends Controller
 
         return redirect('/admin/categories');
     }
+
+    function destroy($category)
+    {
+        $category = \App\Models\Category::findOrFail($category);
+
+        $category->delete();
+
+        return redirect('/admin/categories');
+    }
 }
