@@ -13,7 +13,7 @@ Route::get('/faqs', [\App\Http\Controllers\FaqController::class, 'index'])->name
 // User pages
 
 // Admin pages
-Route::prefix('admin')->name('admin.')->group( function() {
+Route::prefix('admin')->middleware('auth', \App\Http\Middleware\IsAdmin::class)->name('admin.')->group( function() {
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except(['show']);
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)->except(['show']);
 });
