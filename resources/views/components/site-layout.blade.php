@@ -9,6 +9,7 @@
                 | Beheer:
                 <a href="{{route('admin.categories.index')}}">Categorieën</a>
                 <a href="{{route('admin.faqs.index')}}">Faqs</a>
+                <a href="{{route('admin.users.index')}}">Users</a>
             @endif
 
         @else

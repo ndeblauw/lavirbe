@@ -16,6 +16,8 @@ Route::get('/faqs', [\App\Http\Controllers\FaqController::class, 'index'])->name
 Route::prefix('admin')->middleware('auth', \App\Http\Middleware\IsAdmin::class)->name('admin.')->group( function() {
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except(['show']);
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)->except(['show']);
+    Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
+    Route::get('users/{id}/make-admin', [\App\Http\Controllers\Admin\UserController::class, 'makeAdmin'])->name('users.make-admin');
 });
 
 Route::get('/dashboard', function () {
