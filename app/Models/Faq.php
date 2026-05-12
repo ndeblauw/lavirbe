@@ -10,7 +10,7 @@ class Faq extends Model
     /** @use HasFactory<\Database\Factories\FaqFactory> */
     use HasFactory;
 
-    protected $fillable = ['question', 'answer', 'category_id'];
+    protected $fillable = ['question', 'answer', 'category_id', 'user_id'];
 
     public function category()
     {

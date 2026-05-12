@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('question');
             $table->string('answer')->nullable();
             $table->foreignId('category_id');
+            $table->foreignId('user_id');
 
             $table->timestamps();
         });

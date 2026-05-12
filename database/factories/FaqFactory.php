@@ -22,6 +22,7 @@ class FaqFactory extends Factory
             'question' => $this->faker->sentence(),
             'answer' => $this->faker->paragraphs(3, true),
             'category_id' => $this->faker->numberBetween(1, 4),
+            'user_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

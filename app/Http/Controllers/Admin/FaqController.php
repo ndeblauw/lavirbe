@@ -69,6 +69,7 @@ class FaqController extends Controller
             'question' => $request->question,
             'answer' => $request->answer,
             'category_id' => $request->category_id,
+            'user_id' => auth()->user()->id,
         ]);
 
         return redirect()->route('admin.faqs.index');
