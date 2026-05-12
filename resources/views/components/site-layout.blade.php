@@ -5,6 +5,11 @@
         @auth
             | <span style="color: blue"> {{auth()->user()->name}} </span>
 
+            @if(auth()->user()->is_admin)
+                | Beheer:
+                <a href="{{route('admin.categories.index')}}">Categorieën</a>
+                <a href="{{route('admin.faqs.index')}}">Faqs</a>
+            @endif
 
         @else
             <a href="{{route('login')}}">Login</a>
