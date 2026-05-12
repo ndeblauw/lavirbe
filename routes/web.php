@@ -10,6 +10,12 @@ Route::get('/categories/{category}', [\App\Http\Controllers\CategoryController::
 
 Route::get('/faqs', [\App\Http\Controllers\FaqController::class, 'index'])->name('faqs.index');
 
+Route::get('contact', [\App\Http\Controllers\ContactController::class, 'create'])->name('contact.create');
+Route::post('contact', [\App\Http\Controllers\ContactController::class, 'store'])->name('contact.store');
+
+
+
+
 // User pages
 
 // Admin pages
