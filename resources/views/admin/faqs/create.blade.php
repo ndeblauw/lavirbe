@@ -1,4 +1,4 @@
-
+<x-site-layout>
 <form action="/admin/faqs" method="post">
     @csrf
 
@@ -12,3 +12,4 @@
     />
     <button type="submit">Create</button>
 </form>
+</x-site-layout>

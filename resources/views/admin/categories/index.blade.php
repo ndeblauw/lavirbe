@@ -1,4 +1,4 @@
-
+<x-site-layout>
 <h1>Categories</h1>
 <ul>
 @foreach($categories as $category)
@@ -17,4 +17,4 @@
 </ul>
 
 <a href="/admin/categories/create">Add category</a>
-
+</x-site-layout>

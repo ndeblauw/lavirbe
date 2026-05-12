@@ -1,4 +1,4 @@
-
+<x-site-layout>
 <form action="/admin/categories/{{$category->id}}" method="post">
     @csrf
     @method('put')
@@ -7,3 +7,4 @@
 
     <button type="submit">Update</button>
 </form>
+</x-site-layout>

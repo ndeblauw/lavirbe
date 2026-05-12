@@ -1,4 +1,4 @@
-
+<x-site-layout>
 <h1>Faqs</h1>
 <ul>
 @foreach($faqs as $faq)
@@ -17,4 +17,4 @@
 </ul>
 
 <a href="/admin/faqs/create">Add new faq</a>
-
+</x-site-layout>

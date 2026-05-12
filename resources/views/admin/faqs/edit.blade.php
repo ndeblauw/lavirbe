@@ -1,4 +1,4 @@
-
+<x-site-layout>
 <form action="/admin/faqs/{{$faq->id}}" method="post">
     @csrf
     @method('put')
@@ -15,3 +15,4 @@
 
     <button type="submit">Update</button>
 </form>
+</x-site-layout>
