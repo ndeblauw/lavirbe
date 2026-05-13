@@ -9,6 +9,13 @@
 @endphp
 
 <nav class="mt-16 mb-24 text-right">
+    @if(auth()->check() && auth()->user()->is_admin)
+    <div class="absolute right-0 top-0 p-4 bg-gray-700 text-white">
+            <a class="px-2 hover:bg-gray-900" {{route('admin.categories.index')}}">Categorieën</a>
+            <a class="px-2 hover:bg-gray-900" {{route('admin.faqs.index')}}">Faqs</a>
+            <a class="px-2 hover:bg-gray-900" {{route('admin.users.index')}}">Users</a>
+    </div>
+    @endif
 
     <ul class="flex gap-4 justify-end">
         @foreach($menu_items as $item)
@@ -22,12 +29,6 @@
     @auth
         | <span style="color: blue"> {{auth()->user()->name}} </span>
 
-        @if(auth()->user()->is_admin)
-            | Beheer:
-            <a href="{{route('admin.categories.index')}}">Categorieën</a>
-            <a href="{{route('admin.faqs.index')}}">Faqs</a>
-            <a href="{{route('admin.users.index')}}">Users</a>
-        @endif
 
     @else
         <a href="{{route('login')}}">Login</a>

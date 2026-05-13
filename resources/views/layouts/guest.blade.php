@@ -15,8 +15,8 @@
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.1/dist/cdn.min.js"></script>
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
+    <body class="font-sans  text-gray-900 antialiased">
+        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-[#87b2b1]">
             <div>
                 <a href="/">
                     <x-breeze.application-logo class="w-20 h-20 fill-current text-gray-500" />
