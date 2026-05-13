@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 // Public pages
 Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
+
+
 Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category}', [\App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
 
