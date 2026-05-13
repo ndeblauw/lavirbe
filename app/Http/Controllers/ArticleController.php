@@ -18,7 +18,23 @@ class ArticleController extends Controller
     public function show(Article $article)
     {
         return view('articles.show', [
-            'article' => $article
+            'article' => $article,
         ]);
     }
+
+    public function like(Article $article)
+    {
+        $article->likes()->attach(auth()->user()->id);
+
+        return redirect()->back();
+    }
+
+    public function unlike(Article $article)
+    {
+        $article->likes()->detach(auth()->user()->id);
+
+        return redirect()->back();
+    }
+
+
 }

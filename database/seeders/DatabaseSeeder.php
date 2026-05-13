@@ -29,5 +29,13 @@ class DatabaseSeeder extends Seeder
         Category::factory(4)->create();
         Faq::factory(10)->create();
         Article::factory(20)->create();
+
+        // Add 20 likes between users and articles
+        for($counter = 0; $counter < 20; $counter++){
+            $user = User::find(rand(1, 10));
+            $article = Article::find(rand(1, 20));
+
+            $user->likes()->attach($article->id);
+        }
     }
 }

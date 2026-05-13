@@ -15,7 +15,18 @@
     </p>
 
     <div class="prose max-w-none">
-        {{ nl2br(e($article->content)) }}
+        <div class="bg-pink-500 text-pink-50 p-4 float-right ml-4 mb-4">
+            Dit artikel werd geliked door {{$article->likes->count() }} personen.
+            <ul class="list-disc list-inside">
+            @foreach($article->likes as $user)
+                <li class="text-sm text-pink-100">
+                    {{$user->name}}
+                </li>
+            @endforeach
+            </ul>
+
+        </div>
+        {!! nl2br(e($article->content)) !!}
     </div>
 
 </x-site-layout>

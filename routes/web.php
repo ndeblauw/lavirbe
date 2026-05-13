@@ -12,6 +12,8 @@ Route::get('/categories/{category}', [\App\Http\Controllers\CategoryController::
 
 Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{article}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
+Route::get('/articles/{article}/like', [\App\Http\Controllers\ArticleController::class, 'like'])->name('articles.like');
+Route::get('/articles/{article}/unlike', [\App\Http\Controllers\ArticleController::class, 'unlike'])->name('articles.unlike');
 
 Route::get('/faqs', [\App\Http\Controllers\FaqController::class, 'index'])->name('faqs.index');
 
