@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactFormSubmittedMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -25,7 +26,7 @@ class ContactController extends Controller
         // 1/ naar een admin
         $admin = User::where('is_admin', true)->firstOrFail();
         // 2/ de inhoud mailen
-        Mail::to($admin)->send(new \App\Mail\ContactFormSubmittedMail(
+        Mail::to($admin)->send(new ContactFormSubmittedMail(
             $request->email, $request->message
         ));
 

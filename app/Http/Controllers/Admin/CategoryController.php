@@ -9,23 +9,23 @@ use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
-    function index()
+    public function index()
     {
         // Data laden
         $categories = Category::all();
 
         // Data doorgeven aan view
         return view('admin.categories.index', [
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 
-    function create()
+    public function create()
     {
         return view('admin.categories.create');
     }
 
-    function store(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'min:3', 'max:10'],
@@ -38,18 +38,18 @@ class CategoryController extends Controller
         return redirect('/admin/categories');
     }
 
-    function edit($category)
+    public function edit($category)
     {
-        $category = \App\Models\Category::findOrFail($category);
+        $category = Category::findOrFail($category);
 
         return view('admin.categories.edit', [
             'category' => $category,
         ]);
     }
 
-    function update(Request $request, $category)
+    public function update(Request $request, $category)
     {
-        $category = \App\Models\Category::findOrFail($category);
+        $category = Category::findOrFail($category);
 
         $request->validate([
             'name' => ['required', 'string', 'min:3', 'max:10'],
@@ -57,7 +57,7 @@ class CategoryController extends Controller
         ]);
 
         $link_to_file = null;
-        if($request->hasFile('picture')) {
+        if ($request->hasFile('picture')) {
             $link_to_file = Storage::disk('public')->put('categories', $request->picture);
         }
 
@@ -69,9 +69,9 @@ class CategoryController extends Controller
         return redirect('/admin/categories');
     }
 
-    function destroy($category)
+    public function destroy($category)
     {
-        $category = \App\Models\Category::findOrFail($category);
+        $category = Category::findOrFail($category);
 
         $category->delete();
 
