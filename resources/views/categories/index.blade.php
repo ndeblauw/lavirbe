@@ -1,4 +1,4 @@
-<x-site-layout>
+<x-site-layout title="Categorieën">
 
     <h1>Categorieën</h1>
 

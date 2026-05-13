@@ -1,3 +1,7 @@
+@props([
+    'title' => 'Lavir',
+])
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -14,7 +18,7 @@
 
         <main class="">
             <div class="border-b-2 border-black py-8 mb-12">
-                <h1 class="text-7xl font-semibold">Title</h1>
+                <h1 class="text-7xl font-semibold">{{$title}}</h1>
             </div>
 
             {{$slot}}

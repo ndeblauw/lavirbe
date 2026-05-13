@@ -1,4 +1,4 @@
-<x-site-layout>
+<x-site-layout title="Veelgestelde vragen">
 
     <h1>Frequently Asked Questions</h1>
 
