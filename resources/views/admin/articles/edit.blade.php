@@ -4,11 +4,7 @@
     @method('put')
 
     <x-form-textinput name="title" label="Title" placeholder="Article title" value="{{$article->title}}"/>
-    <div>
-        <label for="content">Content</label>
-        <textarea class="border border-black" name="content" id="content" cols="30" rows="10">{{old('content', $article->content)}}</textarea>
-        @error('content') <div style="color: red"> {{ $message }} </div> @enderror
-    </div>
+    <x-form-textarea name="content" label="Content" placeholder="Article content" value="{{$article->content}}"/>
 
     <x-form-select
         name="category_id"
@@ -17,11 +13,7 @@
         value="{{$article->category_id}}"
     />
 
-    <div>
-        <label for="published_at">Published at</label>
-        <input class="border border-black" type="date" name="published_at" id="published_at" value="{{old('published_at', $article->published_at?->format('Y-m-d'))}}">
-        @error('published_at') <div style="color: red"> {{ $message }} </div> @enderror
-    </div>
+    <x-form-datepicker name="published_at" label="Published at" value="{{$article->published_at?->format('Y-m-d')}}"/>
 
     @if($article->image_path)
         <div>
