@@ -10,6 +10,9 @@ Route::get('/', [\App\Http\Controllers\WelcomeController::class, 'index'])->name
 Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category}', [\App\Http\Controllers\CategoryController::class, 'show'])->name('categories.show');
 
+Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles.index');
+Route::get('/articles/{article}', [\App\Http\Controllers\ArticleController::class, 'show'])->name('articles.show');
+
 Route::get('/faqs', [\App\Http\Controllers\FaqController::class, 'index'])->name('faqs.index');
 
 Route::get('contact', [\App\Http\Controllers\ContactController::class, 'create'])->name('contact.create');

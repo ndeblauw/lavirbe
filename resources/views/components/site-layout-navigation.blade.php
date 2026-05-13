@@ -1,5 +1,6 @@
 @php
     $menu_items = [
+        ['name' => 'Home', 'url' => ''],
         ['name' => 'Categorieën', 'url' => 'categories'],
         ['name' => 'Faq', 'url' => 'faqs'],
         ['name' => 'Artikels', 'url' => 'articles'],
@@ -27,17 +28,16 @@
                 <a href="/{{$item['url']}}">{{$item['name']}}</a>
             </li>
         @endforeach
+
+            <li class="px-2 py-1"> | </li>
+            @auth
+                <li class="px-2 py-1"><span> {{auth()->user()->name}} </span></li>
+            @else
+                <li class="px-2 py-1"><a href="{{route('login')}}">Login</a>
+                or
+                    <a href="{{route('register')}}">Register</a></li>
+            @endauth
+
     </ul>
-    
-    @auth
-        | <span style="color: blue"> {{auth()->user()->name}} </span>
 
-
-    @else
-        <a href="{{route('login')}}">Login</a>
-        or
-        <a href="{{route('register')}}">Register</a>
-    @endauth
-
-    <hr/>
 </nav>
