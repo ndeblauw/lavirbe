@@ -27,6 +27,7 @@ Route::post('contact', [\App\Http\Controllers\ContactController::class, 'store']
 
 // Admin pages
 Route::prefix('admin')->middleware('auth', \App\Http\Middleware\IsAdmin::class)->name('admin.')->group( function() {
+    Route::resource('articles', App\Http\Controllers\Admin\ArticleController::class)->except(['show']);
     Route::resource('categories', \App\Http\Controllers\Admin\CategoryController::class)->except(['show']);
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)->except(['show']);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);

@@ -15,6 +15,7 @@
         <div>ADMIN PANEL</div>
         <div>
             <a class="px-2 hover:bg-gray-900" href="{{route('admin.categories.index')}}">Categorieën</a>
+            <a class="px-2 hover:bg-gray-900" href="{{route('admin.articles.index')}}">Artikels</a>
             <a class="px-2 hover:bg-gray-900" href="{{route('admin.faqs.index')}}">Faqs</a>
             <a class="px-2 hover:bg-gray-900" href="{{route('admin.users.index')}}">Users</a>
         </div>
