@@ -12,13 +12,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="bg-[#87b2b1]">
-    <div class="mx-auto max-w-6xl">
+    <div class="mx-auto max-w-5xl">
 
         <x-site-layout-navigation/>
 
         <main class="">
-            <div class="border-b-2 border-black py-8 mb-12">
-                <h1 class="text-7xl font-semibold">{{$title}}</h1>
+            <div class="border-b-3 border-black pb-8 mb-12">
+                <h1 class="text-8xl font-light">{{$title}}</h1>
             </div>
 
             {{$slot}}
