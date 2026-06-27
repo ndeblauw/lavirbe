@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\UserController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FaqController;
+use App\Http\Controllers\OfferController;
 use App\Http\Controllers\Userzone\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\IsAdmin;
@@ -16,8 +18,7 @@ use Illuminate\Support\Facades\Route;
 // Public pages
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
-Route::get('/aanbod', [\App\Http\Controllers\OfferController::class, 'index'])->name('offers.index');
-
+Route::get('/aanbod', [OfferController::class, 'index'])->name('offers.index');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('/categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
@@ -43,6 +44,7 @@ Route::prefix('admin')->middleware('auth', IsAdmin::class)->name('admin.')->grou
     Route::get('users/{id}/make-admin', [UserController::class, 'makeAdmin'])->name('users.make-admin');
     Route::resource('customers', CustomerController::class);
     Route::resource('packages', PackageController::class);
+    Route::resource('contacts', AdminContactController::class);
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])

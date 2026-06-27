@@ -11,7 +11,7 @@
     <div>
 
     </div>
-    <div class="col-span-3 text-right mt-4 border-t-3 border-black py-6">
+    <div class="col-span-3 text-right mt-4 border-t-2 border-black py-6">
         LAVIR. Jouw helpende hand in het besturen van vzw's.
     </div>
 </footer>

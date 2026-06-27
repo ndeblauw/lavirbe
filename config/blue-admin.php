@@ -39,6 +39,12 @@ return [
             'icon' => 'fa-box',
             'color' => 'emerald',
         ],
+        [
+            'title' => 'Contacts',
+            'link' => 'admin/contacts',
+            'icon' => 'fa-envelope',
+            'color' => 'blue',
+        ],
     ],
 
     'details_for' => 'Details for',

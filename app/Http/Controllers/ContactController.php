@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\ContactFormSubmittedMail;
-use App\Models\User;
+use App\Models\Contact;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -16,20 +14,15 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        // validatie van gegevens
-        $request->validate([
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'min:2', 'max:255'],
             'email' => ['required', 'string', 'email', 'min:3', 'max:255'],
-            'message' => ['required', 'string', 'min:10', 'max:255'],
+            'subject' => ['required', 'string', 'min:3', 'max:255'],
+            'message' => ['nullable', 'string', 'max:5000'],
         ]);
 
-        // juiste actie uitvoeren
-        // 1/ naar een admin
-        $admin = User::where('is_admin', true)->firstOrFail();
-        // 2/ de inhoud mailen
-        Mail::to($admin)->send(new ContactFormSubmittedMail(
-            $request->email, $request->message
-        ));
+        Contact::create($validated);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bedankt voor je bericht! Ik neem zo snel mogelijk contact met je op.');
     }
 }
