@@ -33,6 +33,12 @@ return [
             'icon' => 'fa-users',
             'color' => 'sky',
         ],
+        [
+            'title' => 'Packages',
+            'link' => 'admin/packages',
+            'icon' => 'fa-box',
+            'color' => 'emerald',
+        ],
     ],
 
     'details_for' => 'Details for',

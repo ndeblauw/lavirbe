@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+    .contentText h3 {
+        @apply text-2xl mt-4 mb-2;
+    }
+
+    .contentText p {
+        @apply ml-4;
+    }
+
+    .contentText ul {
+        @apply list-disc ml-8 mb-2;
+    }
+}
