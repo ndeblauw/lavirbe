@@ -32,6 +32,7 @@ Route::prefix('admin')->middleware('auth', \App\Http\Middleware\IsAdmin::class)-
     Route::resource('faqs', \App\Http\Controllers\Admin\FaqController::class)->except(['show']);
     Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
     Route::get('users/{id}/make-admin', [\App\Http\Controllers\Admin\UserController::class, 'makeAdmin'])->name('users.make-admin');
+    Route::resource('customers', CustomerController::class);
 });
 
 Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])
