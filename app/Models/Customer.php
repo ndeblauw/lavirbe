@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Database\Factories\CustomerFactory;
+use Illuminate\Database\Eloquent\Attributes\Scope;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
@@ -20,6 +22,12 @@ class Customer extends Model implements HasMedia
         return [
             'hidden' => 'boolean',
         ];
+    }
+
+    #[Scope]
+    public function visible(Builder $query): Builder
+    {
+        return $query->where('hidden', false);
     }
 
     public function registerMediaCollections(): void

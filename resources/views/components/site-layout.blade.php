@@ -24,6 +24,8 @@
             {{$slot}}
         </main>
 
+        <x-customer-logos/>
+
         <x-site-layout-footer/>
 
     </div>

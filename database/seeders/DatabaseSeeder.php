@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Article;
 use App\Models\Category;
-use App\Models\Customer;
 use App\Models\Faq;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -30,9 +29,9 @@ class DatabaseSeeder extends Seeder
         Category::factory(4)->create();
         Faq::factory(10)->create();
         Article::factory(20)->create();
-        Customer::factory(10)->create();
+        $this->call(CustomerSeeder::class);
 
-        // Add 20 likes between users and articles
+        // Add 20 likes between users and arsticles
         for ($counter = 0; $counter < 20; $counter++) {
             $user = User::find(rand(1, 10));
             $article = Article::find(rand(1, 20));
