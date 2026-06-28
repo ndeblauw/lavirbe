@@ -77,10 +77,10 @@ This registers all 7 RESTful routes: `index`, `create`, `store`, `show`, `edit`,
 ### Step 2 — Create an Empty Controller
 
 ```bash
-php artisan make:controller Admin/TreatmentController --invokable --no-interaction
+php artisan make:controller Admin/TreatmentController --no-interaction
 ```
 
-Then replace the contents — it must extend `Ndeblauw\BlueAdmin\Http\Controllers\AdminController` with zero methods:
+The plain stub creates an empty class extending `App\Http\Controllers\Controller`. Replace the parent with the vendor one — it must extend `Ndeblauw\BlueAdmin\Http\Controllers\AdminController` with zero methods:
 
 ```php
 <?php
@@ -122,12 +122,15 @@ class Treatment extends BlueAdminModel
 php artisan make:request TreatmentRequest --no-interaction
 ```
 
+The artisan stub generates `authorize()` returning `false` and a verbose PHPDoc block. Per project convention (see existing `TagRequest`, `PackageRequest`, `UserRequest`), set `authorize(): true` and drop the PHPDoc — authorization is enforced upstream by `AdminController::policyCheck()`.
+
 ```php
 <?php
 
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TreatmentRequest extends FormRequest
 {
@@ -144,12 +147,30 @@ class TreatmentRequest extends FormRequest
             'name_en' => ['nullable', 'string', 'max:255'],
             'description_nl' => ['required', 'string'],
             'description_en' => ['nullable', 'string'],
+            'slug' => ['nullable', 'string', 'max:255', Rule::unique('treatments', 'slug')->ignore($this->treatment)],
         ];
     }
 }
 ```
 
-The controller auto-discovers this via `AdminControllerFormRequestTrait` — looks for `App\Http\Requests\{Modelname}Request`.
+The controller auto-discovers this via `AdminControllerFormRequestTrait` — looks for `App\Http\Requests\{Modelname}Request` (note: lowercase-cased modelname is not used — the PascalCase `modelname()` from `BlueAdminModel` is the lookup key).
+
+#### Rules you MUST include when the form or config uses these features
+
+The vendor `AdminController::store()` / `update()` call `filepondPreparations($valid)` and `belongsToManyPreparations($valid)` on the **validated** array. Keys that don't appear in `$valid` are silently dropped (set to `[]`), and any keys NOT consumed by those handlers get passed straight to `Model::create($valid)` / `$model->update($valid)`. That means:
+
+| Form/Config feature | Required rule | Why |
+|---------------------|---------------|-----|
+| `$config->filepond = ['image']` | `'image' => ['nullable', 'array'], 'image.*' => ['string']` | Without rules, uploads never reach `filepondPreparations` and the file is lost. The array items are Filepond server IDs (strings). |
+| `$config->belongsToMany = ['tags']` | `'tags' => ['nullable', 'array'], 'tags.*' => ['integer', 'exists:tags,id']` | Without rules, `sync([])` runs on every save, wiping existing relations. |
+| Form has `<x-ba-tagselect name="foo">` or `<x-ba-checkboxes name="foo">` but no `$belongsToMany` | Add the rule **AND** add `public $belongsToMany = ['foo'];` to the config | Otherwise `foo` stays in `$valid` and hits `Model::create()` → mass-assignment / "column not found" error (the field is a relation method, not a column). |
+| Model uses `Spatie\Sluggable` (slug auto-generated) | `'slug' => ['nullable', 'string', 'max:255', Rule::unique('table', 'slug')->ignore($this->{model})]` | Allows manual slug overrides on update; `->ignore($this->treatment)` is the route-parameter binding name (singular snake of the model). |
+| `<x-ba-belongsto name="category" />` | `'category_id' => ['nullable', 'integer', 'exists:categories,id']` | The component appends `_id` to the input name. |
+| `<x-ba-datepicker name="published_at" />` | `'published_at' => ['nullable', 'date']` (or `'nullable', 'date_format:Y-m-d H:i:s'` if datetime) | Picker may submit empty or full datetime string. |
+
+#### The `->ignore($this->{model})` route-binding pattern
+
+For update routes like `admin/treatments/{treatment}`, the FormRequest receives the route-bound model as `$this->treatment` (singular snake_case of the model class basename). Use that exact property name in `Rule::unique(...)->ignore(...)`. For `Article` → `$this->article`, for `Formation` → `$this->formation`, etc.
 
 ### Step 5 — Create the `_form.blade.php` View
 
@@ -228,7 +249,7 @@ Properties you can set on your `app/BlueAdmin/Xxx.php` config class:
 | `$indexTableColumns` | array | `['title']` | Column names to display in the index table |
 | `$filepond` | array | `[]` | Media collection names handled via Filepond (must match media collections on the model) |
 | `$belongsToMany` | array | `[]` | Relationship method names that should be synced on save |
-| `$color` | string | `'blue'` | Tailwind color for the top border accent on cards |
+| `$color` | string | `'blue'` | Tailwind color name for accent (common values seen: `sky`, `rose`, `blue`, `violet`; custom values like `green-mist` may be defined in the project) |
 | `$attributesToShow` | array | null | Column names to display in show view (null = auto-detect from model attributes) |
 | `$index_load` | array | `[]` | Eager-load relations for the index view (e.g., `['media', 'collaborator']`) |
 | `$show_load` | array | `[]` | Eager-load relations for the show view |
@@ -532,6 +553,64 @@ Available on `$config` in all views:
 | `$config->titleField()` | string | Value of `$title_field` or `'title'` |
 | `$config->pathforAdminViews()` | string | `'admin.treatments'` |
 | `$config->routename()` | string | `'treatments'` |
+
+## Gotchas & Common Pitfalls
+
+These are not obvious from the docs and have caused real bugs in this project.
+
+### 1. FormRequest stub ships with `authorize(): false`
+
+`php artisan make:request` generates `return false;`. **Always flip to `true`.** Authorization in blue-admin happens upstream via `AdminController::policyCheck()` (which consults policies, Spatie permissions, or the `IsAdmin` middleware). A `false` return here makes every store/update 403 — including for admins — before policy logic even runs.
+
+### 2. Validated array is the contract between FormRequest, Config, and Controller
+
+The vendor flow is:
+
+```
+$request = $this->getValidatedRequestObject();   // app( XxxRequest::class )
+$valid   = $request->validated();
+$filepond      = $this->filepondPreparations($valid);       // keys listed in $config->filepond
+$belongsToMany = $this->belongsToManyPreparations($valid);  // keys listed in $config->belongsToMany
+$model = ({$config->CLASS})::create($valid);   // ← remaining validated keys hit the DB
+```
+
+Three consequences, in increasing order of pain:
+
+1. **Filepond uploads silently lost.** If `$config->filepond = ['image']` but `'image'` has no rule, `validated()` omits it, `filepondPreparations` sees it missing and sets `$filepond['image'] = []`, and you save a record with no media. Add `'image' => ['nullable', 'array'], 'image.*' => ['string']`.
+2. **belongsToMany silently wiped.** Same shape: `'tags'` must be in the rules so it survives `$valid`, otherwise `sync([])` runs and erases existing relations on every save.
+3. **Mass-assignment / "column not found" error.** If your form posts a key (`tags`, `categories`, …) that's a **relation method**, not a column, and (a) you added it to the rules **but** (b) you forgot to declare `public $belongsToMany = ['tags'];` on the config, the key stays in `$valid` and flows into `Model::create($valid)` → `Illuminate\Database\QueryException` (no such column: `tags`). Diagnose by checking `$config->belongsToMany` covers every relation input in the form.
+
+### 3. `Rule::unique(...)->ignore()` expects the route-bound model property
+
+For `Route::resource('treatments', ...)` the update URL is `admin/treatments/{treatment}`. Laravel route-model-binding injects that as `$this->treatment` on the FormRequest — singular snake_case of the model class basename. So `Article` → `$this->article`, `Formation` → `$this->formation`, `User` → `$this->user`. Mismatching this name (e.g., `$this->id`) compiles but won't ignore the current row on update, causing spurious "slug already taken" validation failures.
+
+### 4. Create the config BEFORE the FormRequest rules for filepond/belongsToMany
+
+The rules you need to write depend on what the config declares (which collections/relations). When scaffolding a new resource, write Step 3 (config) — including any `public $filepond` and `public $belongsToMany` arrays — before Step 4 (request rules). Otherwise you'll either under-validate (lost uploads) or over-validate (mass-assignment errors per Gotcha #2).
+
+### 5. Pair every `<x-ba-tagselect>` / `<x-ba-checkboxes>` with a `$belongsToMany` entry
+
+These components render multi-select inputs for relations. If you place one in `_form.blade.php` without adding the matching key to `$config->belongsToMany`, the post will fail (per Gotcha #2.3). The rule of thumb:
+
+```
+_form.blade.php:  <x-ba-tagselect name="tags" .../>
+config (BlueAdmin/Article.php):  public $belongsToMany = ['tags'];
+FormRequest (ArticleRequest.php):  'tags' => ['nullable', 'array'], 'tags.*' => ['integer', 'exists:tags,id']
+```
+
+All three lines together — skip any one and the cycle breaks.
+
+### 6. `php artisan make:controller` flags
+
+Use the plain form (`php artisan make:controller Admin/XxxController --no-interaction`) — it generates an empty class extending `App\Http\Controllers\Controller`. Avoid `--invokable` (injects an unused `__invoke()` you then delete) and `--resource` (injects 7 stub methods that shadow the vendor `AdminController`'s real implementations — silent bug factory).
+
+### 7. Run Pint after writing Request classes
+
+The artisan stub includes a multi-line PHPDoc block on `authorize()` and `rules()` that doesn't match the project style. Run `vendor/bin/pint --dirty --format agent` on the new file after editing; Pint leaves the rules alone but strips excess docblocks and `use` imports you didn't end up using (e.g., the stub's `use Illuminate\Contracts\Validation\ValidationRule;`).
+
+### 8. BlueAdmin config color must come from the project's palette
+
+The `$color` property is rendered as `border-{color}-500` etc. via Tailwind classes. If you set `$color = 'green-mist'` but `green-mist` isn't a Tailwind color in this project, the top-border accent silently fails. Stick to the values already used in `app/BlueAdmin/*.php` (`sky`, `rose`, `blue`, `violet`) unless you've verified the palette has the new one.
 
 ## Testing
 
