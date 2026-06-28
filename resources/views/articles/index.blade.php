@@ -1,19 +1,13 @@
-<x-site-layout title="Artikels">
+<x-site-layout title="Kennisbank">
 
-    <ul class="space-y-4">
+    <div class="mb-6">
+        {{$articles->links()}}
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         @foreach ($articles as $article)
-            <li>
-                <a href="{{ route('articles.show', $article) }}" class="text-xl font-bold hover:underline">
-                    {{ $article->title }}
-                </a>
-                <p class="text-sm text-gray-500">
-                    {{ $article->published_at ? \Carbon\Carbon::parse($article->published_at)->format('d F Y') : 'Nog niet gepubliceerd' }}
-                    @if ($article->author)
-                        door {{ $article->author->name }}
-                    @endif
-                </p>
-            </li>
+            <x-article-card :article="$article" />
         @endforeach
-    </ul>
+    </div>
 
 </x-site-layout>
