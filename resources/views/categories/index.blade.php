@@ -1,7 +1,5 @@
 <x-site-layout title="Categorieën">
 
-    <h1>Categorieën</h1>
-
     <ul class="grid grid-cols-4 gap-4">
         @foreach ($categories as $category)
             <li>

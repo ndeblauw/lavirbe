@@ -8,7 +8,7 @@
 ])
 
 <div>
-    <label for="{{$name}}">{{$label}}</label>
-    <textarea class="border border-black" name="{{$name}}" id="{{$name}}" placeholder="{{$placeholder}}" rows="{{$rows}}" cols="{{$cols}}">{{old($name,$value)}}</textarea>
-    @error($name) <div style="color: red"> {{ $message }} </div> @enderror
+    <label for="{{$name}}" class="block mb-1">{{$label}}</label>
+    <textarea class="w-full border-2 border-black p-3 bg-white" name="{{$name}}" id="{{$name}}" placeholder="{{$placeholder}}" rows="{{$rows}}" cols="{{$cols}}">{{old($name,$value)}}</textarea>
+    @error($name) <div class="text-red-600 text-base mt-1"> {{ $message }} </div> @enderror
 </div>

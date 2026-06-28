@@ -8,7 +8,7 @@
 
         <!-- Password -->
         <div>
-           breeze. <x-breeze.input-label for="password" :value="__('Password')" />
+            <x-breeze.input-label for="password" :value="__('Password')" />
 
             <x-breeze.text-input id="password" class="block mt-1 w-full"
                             type="password"
