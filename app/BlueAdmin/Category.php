@@ -10,9 +10,9 @@ class Category extends BlueAdminModel
 
     public $name_to_use = 'Categories';
 
-    public $title_field = 'name';
+    public $title_field = 'title';
 
-    public $indexTableColumns = ['name'];
+    public $indexTableColumns = ['title'];
 
     public $color = 'rose';
 }

@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Tag extends Model
 {
     /** @use HasFactory<TagFactory> */
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $guarded = [];
 
@@ -29,6 +30,13 @@ class Tag extends Model
         return $query->where('hidden', false);
     }
 
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
+
     public function articles()
     {
         return $this->morphedByMany(Article::class, 'taggable');
@@ -42,28 +50,5 @@ class Tag extends Model
     public function formations()
     {
         return $this->morphedByMany(Formation::class, 'taggable');
-    }
-
-    protected static function booted(): void
-    {
-        static::creating(function (Tag $tag) {
-            if (empty($tag->slug)) {
-                $tag->slug = Str::slug($tag->title);
-            }
-
-            $tag->slug = $tag->generateUniqueSlug($tag->slug);
-        });
-    }
-
-    public function generateUniqueSlug(string $slug): string
-    {
-        $original = $slug;
-        $i = 1;
-
-        while (Tag::where('slug', $slug)->where('id', '!=', $this->id ?? 0)->exists()) {
-            $slug = $original.'-'.$i++;
-        }
-
-        return $slug;
     }
 }

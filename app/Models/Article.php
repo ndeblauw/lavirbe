@@ -7,17 +7,26 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Article extends Model implements HasMedia
 {
     /** @use HasFactory<ArticleFactory> */
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, HasSlug, InteractsWithMedia;
 
     protected $guarded = [];
 
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    public function getSlugOptions(): SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
+    }
 
     public function author()
     {

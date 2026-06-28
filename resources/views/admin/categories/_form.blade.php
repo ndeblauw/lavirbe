@@ -1,1 +1,1 @@
-<x-ba-text name="name" label="Name" required />
+<x-ba-text name="title" label="Title" required />

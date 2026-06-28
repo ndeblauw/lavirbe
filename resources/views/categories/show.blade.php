@@ -1,5 +1,5 @@
-<x-site-layout title="{{ $category->name }}">
-    <h1>{{ $category->name }}</h1>
+<x-site-layout title="{{ $category->title }}">
+    <h1>{{ $category->title }}</h1>
 
     @if($articles->isNotEmpty())
         <ul class="space-y-4 mt-6">

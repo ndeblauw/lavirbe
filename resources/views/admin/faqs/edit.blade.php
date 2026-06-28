@@ -9,7 +9,7 @@
     <x-form-select
         name="category_id"
         label="Categorie"
-        :options="\App\Models\Category::all()->pluck('name', 'id')->toArray()"
+        :options="\App\Models\Category::all()->pluck('title', 'id')->toArray()"
         value="{{$faq->category_id}}"
     />
 

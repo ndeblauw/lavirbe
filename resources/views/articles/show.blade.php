@@ -16,7 +16,7 @@
             @if($article->category)
             <div class="mt-6">
                 Categorie<br/>
-                <a href="{{ route('categories.show', ['category' => $article->category]) }}" class="inline-block underline hover:decoration-dotted">{{ $article->category->name }}</a>
+                <a href="{{ route('categories.show', ['category' => $article->category]) }}" class="inline-block underline hover:decoration-dotted">{{ $article->category->title }}</a>
             </div>
             @endif
             @if($article->tags->isNotEmpty())

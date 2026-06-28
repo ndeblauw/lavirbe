@@ -8,7 +8,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::withCount('articles')->orderBy('name')->get();
+        $categories = Category::withCount('articles')->orderBy('title')->get();
 
         return view('categories.index', [
             'categories' => $categories,

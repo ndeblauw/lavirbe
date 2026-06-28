@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Package extends Model
 {
     /** @use HasFactory<PackageFactory> */
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $guarded = [];
 
@@ -29,27 +30,11 @@ class Package extends Model
         return $query->where('hidden', false);
     }
 
-    protected static function booted(): void
+    public function getSlugOptions(): SlugOptions
     {
-        static::creating(function (Package $package) {
-            if (empty($package->slug)) {
-                $package->slug = Str::slug($package->title);
-            }
-
-            $package->slug = $package->generateUniqueSlug($package->slug);
-        });
-    }
-
-    public function generateUniqueSlug(string $slug): string
-    {
-        $original = $slug;
-        $i = 1;
-
-        while (Package::where('slug', $slug)->where('id', '!=', $this->id ?? 0)->exists()) {
-            $slug = $original.'-'.$i++;
-        }
-
-        return $slug;
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 
     public function category()

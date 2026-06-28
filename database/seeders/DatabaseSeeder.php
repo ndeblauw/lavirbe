@@ -27,14 +27,12 @@ class DatabaseSeeder extends Seeder
             'name' => 'Ailan Iriks',
             'email' => 'info@lavir.be',
             'password' => '$2y$12$lZZLZHlBQsJeqouHrQaRl.52NUGQMnuJ.NFROAi/iL3TdfY2M7rUy',
-            'is_admin' => false,
+            'is_admin' => true,
         ]);
 
-        User::factory(10)->create();
-        Faq::factory(10)->create();
+        $this->call(ArticleSeeder::class);
         $this->call(CustomerSeeder::class);
         $this->call(PackageSeeder::class);
         $this->call(FormationSeeder::class);
-        $this->call(ArticleSeeder::class);
     }
 }

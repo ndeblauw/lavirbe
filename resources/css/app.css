@@ -9,7 +9,7 @@
     }
 
     .contentText p {
-        @apply ml-4;
+        @apply ml-4 mb-2;
     }
 
     .contentText ul {

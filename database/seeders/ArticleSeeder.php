@@ -13,7 +13,7 @@ class ArticleSeeder extends Seeder
 {
     public function run(): void
     {
-        $admin = User::where('is_admin', true)->firstOrFail();
+        $admin = User::where('email', 'info@lavir.be')->firstOrFail();
         $seedDir = storage_path('seeds/articles');
         $files = glob($seedDir.DIRECTORY_SEPARATOR.'*.md');
 
@@ -58,8 +58,8 @@ class ArticleSeeder extends Seeder
             $category = null;
             if (! empty($categoryNames)) {
                 $category = Category::firstOrCreate(
-                    ['name' => trim($categoryNames[0])],
-                    ['name' => trim($categoryNames[0])],
+                    ['title' => trim($categoryNames[0])],
+                    ['title' => trim($categoryNames[0]), 'slug' => Str::slug($categoryNames[0])],
                 );
             }
 
