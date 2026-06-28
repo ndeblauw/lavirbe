@@ -2,8 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Article;
-use App\Models\Category;
 use App\Models\Faq;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -25,20 +23,18 @@ class DatabaseSeeder extends Seeder
             'is_admin' => true,
         ]);
 
+        User::create([
+            'name' => 'Ailan Iriks',
+            'email' => 'info@lavir.be',
+            'password' => '$2y$12$lZZLZHlBQsJeqouHrQaRl.52NUGQMnuJ.NFROAi/iL3TdfY2M7rUy',
+            'is_admin' => false,
+        ]);
+
         User::factory(10)->create();
-        Category::factory(4)->create();
         Faq::factory(10)->create();
-        Article::factory(20)->create();
         $this->call(CustomerSeeder::class);
         $this->call(PackageSeeder::class);
         $this->call(FormationSeeder::class);
-
-        // Add 20 likes between users and arsticles
-        for ($counter = 0; $counter < 20; $counter++) {
-            $user = User::find(rand(1, 10));
-            $article = Article::find(rand(1, 20));
-
-            $user->likes()->attach($article->id);
-        }
+        $this->call(ArticleSeeder::class);
     }
 }

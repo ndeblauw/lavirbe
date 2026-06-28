@@ -21,18 +21,4 @@ class ArticleController extends Controller
             'article' => $article,
         ]);
     }
-
-    public function like(Article $article)
-    {
-        $article->likes()->attach(auth()->user()->id);
-
-        return redirect()->back();
-    }
-
-    public function unlike(Article $article)
-    {
-        $article->likes()->detach(auth()->user()->id);
-
-        return redirect()->back();
-    }
 }

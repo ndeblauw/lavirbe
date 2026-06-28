@@ -1,32 +1,51 @@
 <x-site-layout title="{{ $article->title }}">
 
-    <a href="{{ route('articles.index') }}" class="text-sm text-gray-500 hover:underline mb-4 inline-block">Terug naar artikels</a>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="text-base">
+            <img src="{{ $article->media->first()->getUrl() }}" alt="{{ $article->title }}" class="w-full h-auto mb-4">
 
-    <h1>{{ $article->title }}</h1>
+            <div>
+                Gepubliceerd op {{ $article->published_at ? \Carbon\Carbon::parse($article->published_at)->translatedFormat('d F Y') : 'Nog niet' }}
+            </div>
+            @if ($article->author)
+                <div class="mt-2">
+                    door {{ $article->author->name }}
+                </div>
+            @endif
+
+            @if($article->category)
+            <div class="mt-6">
+                Categorie<br/>
+                <a href="" class="inline-block underline hover:decoration-dotted">{{ $article->category->name }}</a>
+            </div>
+            @endif
+            @if($article->tags->isNotEmpty())
+            <div class="mt-6">
+                Tags<br>
+                @foreach ($article->tags as $tag)
+                    - <a href="" class="inline-block underline hover:decoration-dotted">{{ $tag->title }}</a><br/>
+                @endforeach
+            </div>
+            @endif
+        </div>
+
+        <div class="col-span-2">
+            <div class="contentText">
+                {!! $article->content !!}
+            </div>
+        </div>
+    </div>
+
+
+    <a href="{{ route('articles.index') }}" class="text-sm text-gray-500 hover:underline mb-4 inline-block">Terug naar artikels</a>
 
     <p class="text-sm text-gray-500 mb-6">
         {{ $article->published_at ? \Carbon\Carbon::parse($article->published_at)->format('d F Y') : 'Nog niet gepubliceerd' }}
-        @if ($article->author)
-            door {{ $article->author->name }}
-        @endif
         @if ($article->category)
             in <a href="{{ route('categories.show', $article->category) }}" class="text-blue-600 hover:underline">{{ $article->category->name }}</a>
         @endif
     </p>
 
-    <div class="prose max-w-none">
-        <div class="bg-pink-500 text-pink-50 p-4 float-right ml-4 mb-4">
-            Dit artikel werd geliked door {{$article->likes->count() }} personen.
-            <ul class="list-disc list-inside">
-            @foreach($article->likes as $user)
-                <li class="text-sm text-pink-100">
-                    {{$user->name}}
-                </li>
-            @endforeach
-            </ul>
 
-        </div>
-        {!! nl2br(e($article->content)) !!}
-    </div>
 
 </x-site-layout>

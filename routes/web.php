@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\PackageController as AdminPackageController;
 use App\Http\Controllers\Admin\TagController as AdminTagController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController as AdminDashboardController;
 use App\Http\Controllers\FormationController;
@@ -25,7 +26,8 @@ Route::get('/aanbod', [OfferController::class, 'index'])->name('offers.index');
 Route::get('/vormingen', [FormationController::class, 'index'])->name('formations.index');
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
-Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
+Route::resource('categories', CategoryController::class)->only(['index', 'show']);
 
 Route::get('contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');

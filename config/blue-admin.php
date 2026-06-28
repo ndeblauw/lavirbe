@@ -28,6 +28,12 @@ return [
             'icon' => 'fa-home',
         ],
         [
+            'title' => 'Articles',
+            'link' => 'admin/articles',
+            'icon' => 'fa-newspaper',
+            'color' => 'sky',
+        ],
+        [
             'title' => 'Categories',
             'link' => 'admin/categories',
             'icon' => 'fa-folder',
