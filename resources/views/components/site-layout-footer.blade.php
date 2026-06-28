@@ -1,4 +1,4 @@
-<footer class="mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
+<footer class="mt-16 md:mt-24 grid grid-cols-1 md:grid-cols-3 gap-8">
     <div>
         <div class="font-semibold mb-0.5">LAVIR VOF</div>
         Bergstraat 59<br>

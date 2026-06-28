@@ -1,6 +1,4 @@
 <x-site-layout title="{{ $category->title }}">
-    <h1>{{ $category->title }}</h1>
-
     @if($articles->isNotEmpty())
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
             @foreach ($articles as $article)

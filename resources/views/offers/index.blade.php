@@ -26,7 +26,7 @@
 
     @foreach($packages as $package)
         <div class="mt-12 contentText" id="{{ $package->slug }}">
-            <h2 class="text-4xl mt-8 mb-4">{{ $package->title }}</h2>
+            <h2 class="text-3xl md:text-4xl mt-8 mb-4">{{ $package->title }}</h2>
             <div class="mb-8">
                 {!!$package->body  !!}
             </div>

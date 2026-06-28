@@ -1,5 +1,5 @@
 @if ($customers->isNotEmpty())
-    <h2 class="text-4xl mt-12 mb-4">Tevreden klanten</h2>
+    <h2 class="text-3xl md:text-4xl mt-12 mb-4">Tevreden klanten</h2>
     <div class="mb-12 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
         @foreach ($customers as $customer)
             @if ($customer->website_url)

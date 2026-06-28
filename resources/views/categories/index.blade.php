@@ -1,9 +1,9 @@
 <x-site-layout title="Categorieën">
 
-    <ul class="grid grid-cols-4 gap-4">
+    <ul class="grid grid-cols-2 md:grid-cols-4 gap-4">
         @foreach ($categories as $category)
             <li>
-                <img src="{{ $category->picture_image() }}" alt="Image for {{ $category->title }} picture" width="20%">
+                <img src="{{ $category->picture_image() }}" alt="Image for {{ $category->title }} picture" class="w-full h-auto">
                 <a href="{{ route('categories.show', $category) }}">
                     {{ $category->title }}
                 </a>

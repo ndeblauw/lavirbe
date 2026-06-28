@@ -1,11 +1,9 @@
 <x-site-layout title="Veelgestelde vragen">
 
-    <h1>Frequently Asked Questions</h1>
-
     @foreach($faqs as $faq)
-        <div>
-            <h2>{{$faq->category->title}} - {{ $faq->question }}</h2>
-            <p>{{ $faq->answer }}</p>
+        <div class="mt-8">
+            <h2 class="text-2xl md:text-3xl mb-2">{{$faq->category->title}} - {{ $faq->question }}</h2>
+            <p class="ml-4">{{ $faq->answer }}</p>
         </div>
     @endforeach
 

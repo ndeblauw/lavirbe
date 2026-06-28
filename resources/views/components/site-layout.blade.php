@@ -11,16 +11,16 @@
     <title>{{ config('app.name', 'Lavir') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-[#87b2b1]">
-    <div class="mx-auto max-w-5xl">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 
         <x-site-layout-navigation/>
 
         <main class="text-xl">
-            <div class="border-b-2 border-black pb-8 mb-12">
-                <h1 class="text-8xl font-light">{!! $title !!}</h1>
+            <div class="border-b-2 border-black pb-6 mb-8 md:pb-8 md:mb-12">
+                <h1 class="text-5xl sm:text-6xl md:text-8xl font-light leading-tight">{!! $title !!}</h1>
             </div>
 
             {{$slot}}
