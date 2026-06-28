@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,7 +26,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Ailan Iriks',
             'email' => 'info@lavir.be',
-            'password' => '$2y$12$lZZLZHlBQsJeqouHrQaRl.52NUGQMnuJ.NFROAi/iL3TdfY2M7rUy',
+            'password' => Hash::make('tijnisfijn'),
             'is_admin' => true,
         ]);
 

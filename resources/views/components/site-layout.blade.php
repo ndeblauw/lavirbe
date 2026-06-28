@@ -19,7 +19,7 @@
 
         <main class="text-xl">
             <div class="border-b-2 border-black pb-8 mb-12">
-                <h1 class="text-8xl font-light">{{$title}}</h1>
+                <h1 class="text-8xl font-light">{!! $title !!}</h1>
             </div>
 
             {{$slot}}
