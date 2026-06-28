@@ -40,7 +40,7 @@ Route::get('contact', [ContactController::class, 'create'])->name('contact.creat
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Logged in pages
-Route::redirect('/dashboard', '/admin');
+Route::redirect('/dashboard', '/admin')->name('dashboard');
 
 // Admin pages
 Route::prefix('admin')->middleware('auth', IsAdmin::class)->name('admin.')->group(function () {
