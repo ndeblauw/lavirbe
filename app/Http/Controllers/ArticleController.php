@@ -20,6 +20,7 @@ class ArticleController extends Controller
                 });
             })
             ->orderBy('published_at', 'desc')
+            ->with('media', 'tags', 'category')
             ->paginate(12)
             ->withQueryString();
 

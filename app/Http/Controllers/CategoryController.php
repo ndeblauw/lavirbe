@@ -17,7 +17,10 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $articles = $category->articles()->orderBy('published_at', 'desc')->get();
+        $articles = $category->articles()
+            ->with('media', 'tags', 'category')
+            ->orderBy('published_at', 'desc')
+            ->get();
 
         return view('categories.show', [
             'category' => $category,

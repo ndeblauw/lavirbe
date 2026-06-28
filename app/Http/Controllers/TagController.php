@@ -17,7 +17,10 @@ class TagController extends Controller
 
     public function show(Tag $tag)
     {
-        $articles = $tag->articles()->orderBy('published_at', 'desc')->get();
+        $articles = $tag->articles()
+            ->with('media', 'tags', 'category')
+            ->orderBy('published_at', 'desc')
+            ->get();
 
         return view('tags.show', [
             'tag' => $tag,
