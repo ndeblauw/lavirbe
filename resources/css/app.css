@@ -15,4 +15,8 @@
     .contentText ul {
         @apply list-disc ml-8 mb-2;
     }
+
+    .contentText a {
+        @apply underline hover:decoration-dotted;
+    }
 }

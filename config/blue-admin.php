@@ -45,6 +45,12 @@ return [
             'icon' => 'fa-envelope',
             'color' => 'blue',
         ],
+        [
+            'title' => 'Formations',
+            'link' => 'admin/formations',
+            'icon' => 'fa-graduation-cap',
+            'color' => 'violet',
+        ],
     ],
 
     'details_for' => 'Details for',

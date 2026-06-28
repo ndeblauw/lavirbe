@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         Article::factory(20)->create();
         $this->call(CustomerSeeder::class);
         $this->call(PackageSeeder::class);
+        $this->call(FormationSeeder::class);
 
         // Add 20 likes between users and arsticles
         for ($counter = 0; $counter < 20; $counter++) {
