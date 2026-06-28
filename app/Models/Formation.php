@@ -29,8 +29,6 @@ class Formation extends Model implements HasMedia
         });
     }
 
-
-
     protected function casts(): array
     {
         return [
@@ -50,8 +48,6 @@ class Formation extends Model implements HasMedia
             ->singleFile();
     }
 
-
-
     public function generateUniqueSlug(string $slug): string
     {
         $original = $slug;
@@ -62,5 +58,10 @@ class Formation extends Model implements HasMedia
         }
 
         return $slug;
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 }

@@ -51,6 +51,12 @@ return [
             'icon' => 'fa-graduation-cap',
             'color' => 'violet',
         ],
+        [
+            'title' => 'Tags',
+            'link' => 'admin/tags',
+            'icon' => 'fa-tags',
+            'color' => 'orange',
+        ],
     ],
 
     'details_for' => 'Details for',

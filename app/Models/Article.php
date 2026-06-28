@@ -32,4 +32,9 @@ class Article extends Model
     {
         return $this->belongsToMany(User::class, 'article_user', 'article_id', 'user_id');
     }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
 }

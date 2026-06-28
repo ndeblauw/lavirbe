@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Formation;
-use App\Models\Package;
 
 class FormationController extends Controller
 {

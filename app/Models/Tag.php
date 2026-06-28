@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use Database\Factories\PackageFactory;
+use Database\Factories\TagFactory;
 use Illuminate\Database\Eloquent\Attributes\Scope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Package extends Model
+class Tag extends Model
 {
-    /** @use HasFactory<PackageFactory> */
+    /** @use HasFactory<TagFactory> */
     use HasFactory;
 
     protected $guarded = [];
@@ -29,14 +29,29 @@ class Package extends Model
         return $query->where('hidden', false);
     }
 
+    public function articles()
+    {
+        return $this->morphedByMany(Article::class, 'taggable');
+    }
+
+    public function packages()
+    {
+        return $this->morphedByMany(Package::class, 'taggable');
+    }
+
+    public function formations()
+    {
+        return $this->morphedByMany(Formation::class, 'taggable');
+    }
+
     protected static function booted(): void
     {
-        static::creating(function (Package $package) {
-            if (empty($package->slug)) {
-                $package->slug = Str::slug($package->title);
+        static::creating(function (Tag $tag) {
+            if (empty($tag->slug)) {
+                $tag->slug = Str::slug($tag->title);
             }
 
-            $package->slug = $package->generateUniqueSlug($package->slug);
+            $tag->slug = $tag->generateUniqueSlug($tag->slug);
         });
     }
 
@@ -45,15 +60,10 @@ class Package extends Model
         $original = $slug;
         $i = 1;
 
-        while (Package::where('slug', $slug)->where('id', '!=', $this->id ?? 0)->exists()) {
+        while (Tag::where('slug', $slug)->where('id', '!=', $this->id ?? 0)->exists()) {
             $slug = $original.'-'.$i++;
         }
 
         return $slug;
-    }
-
-    public function tags()
-    {
-        return $this->morphToMany(Tag::class, 'taggable');
     }
 }
