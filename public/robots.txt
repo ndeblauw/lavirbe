@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://lavir.be/sitemap.xml

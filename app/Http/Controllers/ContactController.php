@@ -9,7 +9,9 @@ class ContactController extends Controller
 {
     public function create()
     {
-        return view('contact.create');
+        return view('contact.create', [
+            'seo' => config('seo.pages.contact'),
+        ]);
     }
 
     public function store(Request $request)

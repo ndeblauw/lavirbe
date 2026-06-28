@@ -6,6 +6,8 @@ class WelcomeController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        return view('welcome', [
+            'seo' => config('seo.pages.welcome'),
+        ]);
     }
 }

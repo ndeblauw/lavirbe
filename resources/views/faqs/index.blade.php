@@ -1,4 +1,7 @@
-<x-site-layout title="Veelgestelde vragen">
+<x-site-layout
+    :title="$seo['title'] ?? 'Veelgestelde vragen'"
+    :description="$seo['description'] ?? null"
+>
 
     @foreach($faqs as $faq)
         <div class="mt-8">

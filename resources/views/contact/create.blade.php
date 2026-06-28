@@ -1,4 +1,7 @@
-<x-site-layout title="Contact">
+<x-site-layout
+    :title="$seo['title'] ?? 'Contact'"
+    :description="$seo['description'] ?? null"
+>
 
     <p class="mb-8 leading-relaxed">
         Stel hieronder via het formulier een vraag over ons aanbod, of vraag een telefonisch gesprek aan.

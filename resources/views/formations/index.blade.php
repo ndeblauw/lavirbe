@@ -1,4 +1,7 @@
-<x-site-layout title="Vormingen">
+<x-site-layout
+    :title="$seo['title'] ?? 'Vormingen'"
+    :description="$seo['description'] ?? null"
+>
 
     <p>
         LAVIR vzw coaching biedt vormingen aan gericht op medewerkers en bestuurders van vzw’s. Bekijk hieronder het aanbod. Momenteel worden vormingen enkel op aanvraag georganiseerd.

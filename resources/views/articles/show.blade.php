@@ -1,8 +1,27 @@
-<x-site-layout title="{{ $article->title }}">
+<x-site-layout
+    :title="$seo['title']"
+    :description="$seo['description']"
+    :type="$seo['type']"
+    :image="$seo['image']"
+    :image-alt="$seo['imageAlt']"
+    :author="$seo['author']"
+    :published-at="$seo['publishedAt']"
+    :modified-at="$seo['modifiedAt']"
+    :reading-time="$seo['readingTime']"
+    :keywords="$seo['keywords']"
+    :article-section="$seo['articleSection']"
+    :breadcrumbs="$seo['breadcrumbs']"
+>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <article class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="text-base">
-            <img src="{{ $article->media->first()->getUrl() }}" alt="{{ $article->title }}" class="w-full h-auto mb-4">
+            @if($article->media->first())
+                <img src="{{ $article->media->first()->getUrl() }}"
+                     alt="{{ $article->title }}"
+                     class="w-full h-auto mb-4"
+                     decoding="async"
+                     fetchpriority="high">
+            @endif
 
             <div>
                 Gepubliceerd op {{ $article->published_at ? \Carbon\Carbon::parse($article->published_at)->translatedFormat('d F Y') : 'Nog niet' }}
@@ -39,10 +58,7 @@
             </div>
 
         </div>
-    </div>
-
-
-
+    </article>
 
 
 

@@ -10,6 +10,9 @@ class FormationController extends Controller
     {
         $formations = Formation::query()->visible()->get();
 
-        return view('formations.index', compact('formations'));
+        return view('formations.index', [
+            'formations' => $formations,
+            'seo' => config('seo.pages.formations'),
+        ]);
     }
 }

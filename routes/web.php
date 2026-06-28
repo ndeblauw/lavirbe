@@ -14,6 +14,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController as AdminDashboardController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\Userzone\ProfileController;
 use App\Http\Controllers\WelcomeController;
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 
 // Public pages
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 Route::get('/aanbod', [OfferController::class, 'index'])->name('offers.index');
 Route::get('/vormingen', [FormationController::class, 'index'])->name('formations.index');
@@ -39,7 +41,6 @@ Route::post('contact', [ContactController::class, 'store'])->name('contact.store
 
 // Logged in pages
 Route::redirect('/dashboard', '/admin');
-
 
 // Admin pages
 Route::prefix('admin')->middleware('auth', IsAdmin::class)->name('admin.')->group(function () {

@@ -4,7 +4,7 @@
 
 <a href="{{ route('articles.show', $article) }}" class="block bg-white rounded-none hover:shadow-xs hover:-translate-y-2 transition-all duration-300 border-2 border-black">
     @if($article->media->first())
-        <img src="{{ $article->media->first()->getUrl() }}" alt="{{ $article->title }}" class="w-full h-48 object-cover ">
+        <img src="{{ $article->media->first()->getUrl() }}" alt="{{ $article->title }}" class="w-full h-48 object-cover " loading="lazy">
     @endif
 
     <div class="p-4 flex flex-col justify-between">

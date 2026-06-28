@@ -1,4 +1,8 @@
-<x-site-layout title="Kennisbank">
+<x-site-layout
+    title="Kennisbank"
+    description="Artikels en kennisbank van LAVIR vzw coaching rond bestuur, fundraising, HR en meer voor vzw's."
+    :noindex="$noindex ?? false"
+>
 
     <form action="{{ route('articles.index') }}" method="GET" class="mb-6">
         <div class="flex gap-2">

@@ -12,6 +12,7 @@ class FaqController extends Controller
 
         return view('faqs.index', [
             'faqs' => $faqs,
+            'seo' => config('seo.pages.faqs'),
         ]);
     }
 }

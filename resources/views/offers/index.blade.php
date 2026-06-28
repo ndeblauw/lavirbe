@@ -1,4 +1,7 @@
-<x-site-layout title="Aanbod">
+<x-site-layout
+    :title="$seo['title'] ?? 'Aanbod'"
+    :description="$seo['description'] ?? null"
+>
 
     <p>
         LAVIR biedt ondersteuning op volgende vlakken:

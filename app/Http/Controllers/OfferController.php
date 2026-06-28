@@ -10,6 +10,9 @@ class OfferController extends Controller
     {
         $packages = Package::query()->visible()->get();
 
-        return view('offers.index', compact('packages'));
+        return view('offers.index', [
+            'packages' => $packages,
+            'seo' => config('seo.pages.offers'),
+        ]);
     }
 }
