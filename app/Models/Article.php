@@ -39,11 +39,6 @@ class Article extends Model implements HasMedia
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function likes()
-    {
-        return $this->belongsToMany(User::class, 'article_user', 'article_id', 'user_id');
-    }
-
     public function tags()
     {
         return $this->morphToMany(Tag::class, 'taggable');

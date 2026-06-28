@@ -53,9 +53,4 @@ class User extends Authenticatable
     {
         return $this->hasMany(Article::class, 'author_id', 'id');
     }
-
-    public function likes()
-    {
-        return $this->belongsToMany(Article::class, 'article_user', 'article_id', 'user_id');
-    }
 }

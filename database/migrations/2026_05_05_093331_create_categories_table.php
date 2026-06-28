@@ -13,7 +13,6 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('slug')->nullable()->unique();
-            $table->string('picture_path')->nullable();
 
             $table->timestamps();
         });

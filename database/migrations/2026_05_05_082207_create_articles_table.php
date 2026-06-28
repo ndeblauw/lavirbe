@@ -14,7 +14,6 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->nullable()->unique();
             $table->text('content');
-            $table->string('image_path')->nullable();
             $table->timestamp('published_at')->nullable();
 
             $table->foreignId('author_id')->nullable();
