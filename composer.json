@@ -13,7 +13,9 @@
         "spatie/laravel-flare": "^3.0",
         "spatie/laravel-medialibrary": "^11.23",
         "spatie/laravel-ray": "^1.43",
-        "spatie/laravel-sluggable": "^4.0"
+        "spatie/laravel-sluggable": "^4.0",
+        "symfony/http-client": "^8.1",
+        "symfony/postmark-mailer": "^8.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^4.0",
