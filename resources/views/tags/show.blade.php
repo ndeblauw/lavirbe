@@ -1,5 +1,6 @@
-<x-site-layout title="{{ $category->name }}">
-    <h1>{{ $category->name }}</h1>
+<x-site-layout title="{{ $tag->title }}">
+
+    <h1>{{ $tag->title }}</h1>
 
     @if($articles->isNotEmpty())
         <ul class="space-y-4 mt-6">
@@ -15,8 +16,9 @@
             @endforeach
         </ul>
     @else
-        <p class="mt-6">Geen artikels gevonden in deze categorie.</p>
+        <p class="mt-6">Geen artikels gevonden met deze tag.</p>
     @endif
 
-    <a href="{{ route('categories.index') }}" class="inline-block mt-6 underline hover:decoration-dotted">Terug naar overzicht</a>
+    <a href="{{ route('tags.index') }}" class="inline-block mt-6 underline hover:decoration-dotted">Terug naar overzicht</a>
+
 </x-site-layout>

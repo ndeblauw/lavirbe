@@ -9,6 +9,7 @@
                 <a href="{{ route('categories.show', $category) }}">
                     {{ $category->name }}
                 </a>
+                <span class="text-sm text-gray-500">({{ $category->articles_count }} artikels)</span>
             </li>
         @endforeach
     </ul>

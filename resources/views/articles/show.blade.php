@@ -16,14 +16,14 @@
             @if($article->category)
             <div class="mt-6">
                 Categorie<br/>
-                <a href="" class="inline-block underline hover:decoration-dotted">{{ $article->category->name }}</a>
+                <a href="{{ route('categories.show', ['category' => $article->category]) }}" class="inline-block underline hover:decoration-dotted">{{ $article->category->name }}</a>
             </div>
             @endif
             @if($article->tags->isNotEmpty())
             <div class="mt-6">
                 Tags<br>
                 @foreach ($article->tags as $tag)
-                    - <a href="" class="inline-block underline hover:decoration-dotted">{{ $tag->title }}</a><br/>
+                    - <a href="{{ route('tags.show', ['tag' => $tag]) }}" class="inline-block underline hover:decoration-dotted">{{ $tag->title }}</a><br/>
                 @endforeach
             </div>
             @endif
@@ -33,18 +33,17 @@
             <div class="contentText">
                 {!! $article->content !!}
             </div>
+            <div class="text-center mt-12">
+                <a href="{{ route('articles.index') }}" class="border-2 border-black px-8 py-3 text-xl font-semibold hover:bg-black hover:text-white transition-colors">Terug naar alle artikels</a>
+
+            </div>
+
         </div>
     </div>
 
 
-    <a href="{{ route('articles.index') }}" class="text-sm text-gray-500 hover:underline mb-4 inline-block">Terug naar artikels</a>
 
-    <p class="text-sm text-gray-500 mb-6">
-        {{ $article->published_at ? \Carbon\Carbon::parse($article->published_at)->format('d F Y') : 'Nog niet gepubliceerd' }}
-        @if ($article->category)
-            in <a href="{{ route('categories.show', $article->category) }}" class="text-blue-600 hover:underline">{{ $article->category->name }}</a>
-        @endif
-    </p>
+
 
 
 

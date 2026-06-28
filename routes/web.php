@@ -14,6 +14,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController as AdminDashboardController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\Userzone\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\IsAdmin;
@@ -27,7 +28,11 @@ Route::get('/vormingen', [FormationController::class, 'index'])->name('formation
 
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index');
 Route::get('/articles/{article:slug}', [ArticleController::class, 'show'])->name('articles.show');
-Route::resource('categories', CategoryController::class)->only(['index', 'show']);
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('/categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
+
+Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
+Route::get('/tags/{tag:slug}', [TagController::class, 'show'])->name('tags.show');
 
 Route::get('contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');

@@ -8,7 +8,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('name')->get();
+        $categories = Category::withCount('articles')->orderBy('name')->get();
 
         return view('categories.index', [
             'categories' => $categories,
@@ -17,11 +17,11 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        // Mag overgeslagen worden, want ik type-hint het model in de functie
-        // $category = \App\Models\Category::findOrFail($category);
+        $articles = $category->articles()->orderBy('published_at', 'desc')->get();
 
         return view('categories.show', [
             'category' => $category,
+            'articles' => $articles,
         ]);
     }
 }
