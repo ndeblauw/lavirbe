@@ -37,6 +37,10 @@ Route::get('/tags/{tag:slug}', [TagController::class, 'show'])->name('tags.show'
 Route::get('contact', [ContactController::class, 'create'])->name('contact.create');
 Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
+// Logged in pages
+Route::redirect('/dashboard', '/admin');
+
+
 // Admin pages
 Route::prefix('admin')->middleware('auth', IsAdmin::class)->name('admin.')->group(function () {
     Route::get('/', [AdminDashboardController::class, 'index'])->name('dashboard');

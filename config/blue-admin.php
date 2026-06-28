@@ -28,34 +28,21 @@ return [
             'icon' => 'fa-home',
         ],
         [
+            'header' => 'Content Management',
+        ],
+        [
             'title' => 'Articles',
             'link' => 'admin/articles',
             'icon' => 'fa-newspaper',
             'color' => 'sky',
         ],
-        [
-            'title' => 'Categories',
-            'link' => 'admin/categories',
-            'icon' => 'fa-folder',
-            'color' => 'rose',
-        ],
-        [
-            'title' => 'Customers',
-            'link' => 'admin/customers',
-            'icon' => 'fa-users',
-            'color' => 'sky',
-        ],
+
+
         [
             'title' => 'Packages',
             'link' => 'admin/packages',
             'icon' => 'fa-box',
             'color' => 'emerald',
-        ],
-        [
-            'title' => 'Contacts',
-            'link' => 'admin/contacts',
-            'icon' => 'fa-envelope',
-            'color' => 'blue',
         ],
         [
             'title' => 'Formations',
@@ -64,10 +51,41 @@ return [
             'color' => 'violet',
         ],
         [
+            'title' => 'Customers',
+            'link' => 'admin/customers',
+            'icon' => 'fa-users',
+            'color' => 'sky',
+        ],
+
+        [
+            'header' => 'Metadata',
+        ],
+        [
+            'title' => 'Categories',
+            'link' => 'admin/categories',
+            'icon' => 'fa-folder',
+            'color' => 'rose',
+        ],
+        [
             'title' => 'Tags',
             'link' => 'admin/tags',
             'icon' => 'fa-tags',
             'color' => 'orange',
+        ],
+        [
+            'header' => 'Info & Site',
+        ],
+        [
+            'title' => 'Contacts',
+            'link' => 'admin/contacts',
+            'icon' => 'fa-envelope',
+            'color' => 'blue',
+        ],
+        [
+            'title' => 'Users',
+            'link' => 'admin/users',
+            'icon' => 'fa-user',
+            'color' => 'slate',
         ],
     ],
 
@@ -75,5 +93,3 @@ return [
     'record_of_type' => 'Record of the type',
     'create_new' => 'Create New',
 ];
-
-// TODO clean out things that don't belong in the configuration file
