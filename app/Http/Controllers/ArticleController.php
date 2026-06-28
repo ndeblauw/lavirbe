@@ -8,7 +8,20 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::orderBy('published_at', 'desc')->paginate(12);
+        $search = trim((string) request()->string('search'));
+
+        $articles = Article::query()
+            ->when($search !== '', function ($query) use ($search) {
+                $term = '%'.$search.'%';
+
+                $query->where(function ($query) use ($term) {
+                    $query->where('title', 'like', $term)
+                        ->orWhere('content', 'like', $term);
+                });
+            })
+            ->orderBy('published_at', 'desc')
+            ->paginate(12)
+            ->withQueryString();
 
         return view('articles.index', [
             'articles' => $articles,
