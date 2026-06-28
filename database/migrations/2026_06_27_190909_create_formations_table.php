@@ -12,16 +12,12 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->longText('body')->nullable();
             $table->string('slug')->unique();
+            $table->longText('body')->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->boolean('hidden')->default(false);
 
             $table->timestamps();
         });
-    }
-
-    public function down(): void
-    {
-        Schema::dropIfExists('formations');
     }
 };

@@ -10,16 +10,14 @@ return new class extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
+
             $table->string('title');
-            $table->text('body')->nullable();
             $table->string('slug')->nullable()->unique();
+            $table->text('body')->nullable();
+            $table->foreignId('category_id')->nullable()->constrained()->nullOnDelete();
             $table->boolean('hidden')->default(false);
+
             $table->timestamps();
         });
-    }
-
-    public function down(): void
-    {
-        Schema::dropIfExists('packages');
     }
 };
