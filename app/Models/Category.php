@@ -23,6 +23,16 @@ class Category extends Model
         return $this->hasMany(Faq::class, 'category_id', 'id');
     }
 
+    public function packages()
+    {
+        return $this->hasMany(Package::class, 'category_id', 'id');
+    }
+
+    public function formations()
+    {
+        return $this->hasMany(Formation::class, 'category_id', 'id');
+    }
+
     public function picture_image()
     {
         if ($this->picture_path) {

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
+use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
 use App\Http\Controllers\Admin\CustomerController as AdminCustomerController;
 use App\Http\Controllers\Admin\FormationController as AdminFormationController;
@@ -8,7 +9,6 @@ use App\Http\Controllers\Admin\PackageController as AdminPackageController;
 use App\Http\Controllers\Admin\TagController as AdminTagController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\CategoryController as AdminCategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController as AdminDashboardController;
 use App\Http\Controllers\FormationController;
