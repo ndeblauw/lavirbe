@@ -37,7 +37,6 @@ return [
             'color' => 'sky',
         ],
 
-
         [
             'title' => 'Packages',
             'link' => 'admin/packages',
