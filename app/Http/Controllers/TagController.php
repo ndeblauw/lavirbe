@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Tag;
 
 class TagController extends Controller
 {
     public function index()
     {
+        $categories = Category::withCount('articles')->orderBy('title')->get();
         $tags = Tag::withCount('articles')->orderBy('title')->get();
 
         return view('tags.index', [
+            'categories' => $categories,
             'tags' => $tags,
         ]);
     }

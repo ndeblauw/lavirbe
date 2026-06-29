@@ -9,5 +9,8 @@
         <p class="mt-6">Geen artikels gevonden in deze categorie.</p>
     @endif
 
-    <a href="{{ route('categories.index') }}" class="inline-block mt-6 underline hover:decoration-dotted">Terug naar overzicht</a>
+    <div class="text-center mt-12 space-x-4">
+        <a href="{{ route('tags.index') }}" class="border-2 border-black px-8 py-3 text-xl font-semibold hover:bg-black hover:text-white transition-colors">Terug naar categorieën en tags</a>
+        <a href="{{ route('articles.index') }}" class="border-2 border-black px-8 py-3 text-xl font-semibold hover:bg-black hover:text-white transition-colors">Terug naar kennisbank</a>
+    </div>
 </x-site-layout>

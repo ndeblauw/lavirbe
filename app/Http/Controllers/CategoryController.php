@@ -8,11 +8,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::withCount('articles')->orderBy('title')->get();
-
-        return view('categories.index', [
-            'categories' => $categories,
-        ]);
+        return redirect()->route('tags.index');
     }
 
     public function show(Category $category)
