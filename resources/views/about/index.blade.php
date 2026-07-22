@@ -18,7 +18,11 @@
 
         <div class="md:w-1/4 flex flex-col items-center justify-end">
             <img src="{{ asset('/img/ailan-contour.png') }}" alt="Aïlan" class="w-full max-w-[200px]  border-b border-black">
-            <div class="mt-2">linkedin | instagram</div>
+            <div class="mt-2 space-x-2">
+                <a href="/linkedin-ailan" target="_blank" rel="noopener" class="underline hover:decoration-dotted">LinkedIn</a>
+                <span>|</span>
+                <a href="/instagram-lavir" target="_blank" rel="noopener" class="underline hover:decoration-dotted">Instagram</a>
+            </div>
         </div>
     </div>
 

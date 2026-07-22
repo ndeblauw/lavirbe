@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 // ============================================================
 // Static pages
 // ============================================================
+Route::redirect('/linkedin-ailan', 'https://be.linkedin.com/in/ailan-iriks-bickx', 302);
+Route::redirect('/instagram-lavir', 'https://www.instagram.com/lavir_vzw_coaching/', 302);
+
 Route::redirect('/kennisbank', '/articles', 301);
 Route::redirect('/blog', '/articles', 301);
 Route::redirect('/gratis-statutenscan', '/articles/gratis-scan-van-jouw-statuten', 301);
