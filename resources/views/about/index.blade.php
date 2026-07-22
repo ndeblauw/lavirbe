@@ -16,8 +16,9 @@
             </p>
         </div>
 
-        <div class="md:w-1/4 flex items-end justify-center border-b border-black">
-            <img src="{{ asset('/img/ailan-contour.png') }}" alt="Aïlan" class="w-full max-w-[200px]">
+        <div class="md:w-1/4 flex flex-col items-center justify-end">
+            <img src="{{ asset('/img/ailan-contour.png') }}" alt="Aïlan" class="w-full max-w-[200px]  border-b border-black">
+            <div class="mt-2">linkedin | instagram</div>
         </div>
     </div>
 

@@ -13,9 +13,8 @@
 
 <nav x-data="{ open: false }" @click.outside="open = false" class="mt-8 mb-16 md:mt-16 md:mb-24">
     <div class="flex items-center justify-between">
-        <a href="{{ route('welcome') }}"
-           class="border-b @if($is_home) border-black font-bold @else border-transparent @endif hover:border-dotted hover:border-black px-2 py-1 text-xl font-bold">
-            LAVIR
+        <a href="{{ route('welcome') }}" class="px-2 py-1">
+            <img src="{{ asset('img/lavir-logo.png') }}" alt="LAVIR" class="h-12 w-auto @if($is_home) opacity-100 @else opacity-70 @endif hover:opacity-100 transition-opacity">
         </a>
 
         <ul class="hidden sm:flex gap-4 justify-end">

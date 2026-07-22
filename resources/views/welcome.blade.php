@@ -29,8 +29,8 @@
         <div class="border-2 border-black p-6 md:p-8 bg-white/30">
             <h2 class="text-2xl font-semibold mb-4">Vzw in nood</h2>
             <p class="leading-relaxed">
-                Is je financieel verantwoordelijke uitgevallen of heb je tijdelijk ondersteuning nodig voor specifieke opdracht?
-                Wij helpen je graag verder!
+                Is je financieel verantwoordelijke uitgevallen of heb je tijdelijk ondersteuning nodig voor specifieke opdracht?<br/>
+                <a href="{{ route('contact.create') }}" class="underline hover:decoration-dotted font-medium">Wij helpen je graag verder!</a>
             </p>
         </div>
 
