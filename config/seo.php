@@ -36,6 +36,10 @@ return [
             'title' => 'Kennisbank',
             'description' => "Artikels en kennisbank van LAVIR vzw coaching rond bestuur, fundraising, HR en meer voor vzw's.",
         ],
+        'about' => [
+            'title' => 'Over ons',
+            'description' => 'Leer meer over LAVIR vzw coaching: wie we zijn, wat we doen en hoe we vzw\'s ondersteunen.',
+        ],
         'contact' => [
             'title' => 'Contact',
             'description' => 'Neem contact op met LAVIR vzw coaching voor een vraag over ons aanbod of een telefonisch gesprek.',

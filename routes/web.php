@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\Admin\ArticleController as AdminArticleController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ContactController as AdminContactController;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
+Route::get('/over-ons', [AboutUsController::class, 'index'])->name('about.index');
 Route::get('/aanbod', [OfferController::class, 'index'])->name('offers.index');
 Route::get('/vormingen', [FormationController::class, 'index'])->name('formations.index');
 

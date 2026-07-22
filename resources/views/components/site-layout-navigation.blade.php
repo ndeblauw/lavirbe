@@ -3,6 +3,7 @@
         ['name' => 'Aanbod', 'url' => route('offers.index'), 'route_pattern' => 'offers.*'],
         ['name' => 'Vormingen', 'url' => route('formations.index'), 'route_pattern' => 'formations.*'],
         ['name' => 'Kennisbank', 'url' => route('articles.index'), 'route_pattern' => ['articles.*', 'categories.*', 'tags.*']],
+        ['name' => 'Over ons', 'url' => route('about.index'), 'route_pattern' => 'about.*'],
         ['name' => 'Contact', 'url' => route('contact.create'), 'route_pattern' => 'contact.*'],
     ];
 
