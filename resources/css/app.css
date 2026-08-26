@@ -4,6 +4,10 @@
 
 
 @layer base {
+    .contentText h2 {
+        @apply text-3xl font-semibold mt-4 mb-2;
+    }
+
     .contentText h3 {
         @apply text-2xl mt-4 mb-2;
     }
