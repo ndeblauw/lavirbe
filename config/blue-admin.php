@@ -7,7 +7,7 @@ return [
     'livewire_v3' => false,
     'livewire_v4' => true,
 
-    'ckeditor' => true,
+    'ckeditor' => false,
 
     'flux' => false,
     'flux-version' => 'v2',
