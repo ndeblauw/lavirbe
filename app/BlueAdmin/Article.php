@@ -16,5 +16,7 @@ class Article extends BlueAdminModel
 
     public $filepond = ['image'];
 
+    public $belongsToMany = ['tags'];
+
     public $color = 'sky';
 }
