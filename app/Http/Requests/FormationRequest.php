@@ -19,8 +19,7 @@ class FormationRequest extends FormRequest
             'slug' => ['nullable', 'string', 'max:255', Rule::unique('formations', 'slug')->ignore($this->formation)],
             'body' => ['nullable', 'string'],
             'hidden' => ['nullable', 'boolean'],
-            'banner' => ['nullable', 'array'],
-            'banner.*' => ['string'],
+            'banner' => ['nullable', 'string'],
         ];
     }
 }

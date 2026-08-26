@@ -23,8 +23,7 @@ class ArticleRequest extends FormRequest
             'published_at' => ['nullable', 'date'],
             'tags' => ['nullable', 'array'],
             'tags.*' => ['integer', 'exists:tags,id'],
-            'image' => ['nullable', 'array'],
-            'image.*' => ['string'],
+            'image' => ['nullable', 'string'],
         ];
     }
 }
