@@ -16,5 +16,7 @@ class Formation extends BlueAdminModel
 
     public $filepond = ['banner'];
 
+    public $belongsToMany = ['tags'];
+
     public $color = 'violet';
 }

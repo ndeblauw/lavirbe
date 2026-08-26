@@ -20,6 +20,8 @@ class FormationRequest extends FormRequest
             'body' => ['nullable', 'string'],
             'hidden' => ['nullable', 'boolean'],
             'banner' => ['nullable', 'string'],
+            'tags' => ['nullable', 'array'],
+            'tags.*' => ['integer', 'exists:tags,id'],
         ];
     }
 }

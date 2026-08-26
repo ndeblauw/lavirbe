@@ -19,6 +19,8 @@ class PackageRequest extends FormRequest
             'body' => ['nullable', 'string'],
             'slug' => ['nullable', 'string', 'max:255', Rule::unique('packages', 'slug')->ignore($this->package)],
             'hidden' => ['required', 'boolean'],
+            'tags' => ['nullable', 'array'],
+            'tags.*' => ['integer', 'exists:tags,id'],
         ];
     }
 }

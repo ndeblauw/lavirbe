@@ -14,5 +14,7 @@ class Package extends BlueAdminModel
 
     public $indexTableColumns = ['title', 'slug', 'hidden'];
 
+    public $belongsToMany = ['tags'];
+
     public $color = 'emerald';
 }
