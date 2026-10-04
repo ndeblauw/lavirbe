@@ -53,6 +53,8 @@ Route::prefix('admin')->middleware('auth', IsAdmin::class)->name('admin.')->grou
 
     Route::resource('customers', AdminCustomerController::class);
     Route::resource('packages', AdminPackageController::class);
+    Route::patch('contacts/{contact}/spam', [AdminContactController::class, 'toggleSpam'])->name('contacts.toggle-spam');
+    Route::delete('contacts/spam', [AdminContactController::class, 'destroySpam'])->name('contacts.destroy-spam');
     Route::resource('contacts', AdminContactController::class);
     Route::resource('formations', AdminFormationController::class);
     Route::resource('users', AdminUserController::class);

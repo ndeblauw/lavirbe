@@ -105,3 +105,34 @@ it('shows only spam in the admin when requested', function () {
         ->assertSee($spam->email)
         ->assertDontSee($legitimate->email);
 });
+
+it('toggles a contact between inbox and spam', function () {
+    $admin = User::factory()->create(['is_admin' => true]);
+    $contact = makeContact();
+
+    $this->actingAs($admin)
+        ->patch(route('admin.contacts.toggle-spam', $contact))
+        ->assertRedirect();
+
+    expect($contact->refresh()->is_spam)->toBeTrue();
+
+    $this->actingAs($admin)
+        ->patch(route('admin.contacts.toggle-spam', $contact))
+        ->assertRedirect();
+
+    expect($contact->refresh()->is_spam)->toBeFalse()
+        ->and($contact->spam_reason)->toBeNull();
+});
+
+it('deletes all spam contacts', function () {
+    $admin = User::factory()->create(['is_admin' => true]);
+    $legitimate = makeContact(['email' => 'legit@example.com']);
+    $spam = makeContact(['email' => 'spam@example.com', 'is_spam' => true, 'spam_reason' => 'honeypot']);
+
+    $this->actingAs($admin)
+        ->delete(route('admin.contacts.destroy-spam'))
+        ->assertRedirect(route('admin.contacts.index', ['spam' => 1]));
+
+    $this->assertDatabaseMissing('contacts', ['id' => $spam->id]);
+    $this->assertDatabaseHas('contacts', ['id' => $legitimate->id]);
+});

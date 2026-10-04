@@ -12,6 +12,11 @@
                         <div class="my-auto text-sm font-medium flex gap-x-4">
                             @if($showSpam)
                                 <a href="{{ $config->getIndexUrl() }}" class="text-indigo-600 hover:text-indigo-900">Toon inbox</a>
+                                <form action="{{ route('admin.contacts.destroy-spam') }}" method="POST" onsubmit="return confirm('Alle spam berichten verwijderen?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:text-red-900">Delete all spam</button>
+                                </form>
                             @else
                                 <a href="{{ $config->getIndexUrl() }}?spam=1" class="text-indigo-600 hover:text-indigo-900">Toon spam</a>
                             @endif
@@ -52,6 +57,13 @@
                                 @endforeach
                                 <td class="px-6 py-3 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="{{$config->getShowUrl($model->getKey())}}" class="text-indigo-600 hover:text-indigo-900 mr-4">Details</a>
+                                    <form action="{{ route('admin.contacts.toggle-spam', $model) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="text-indigo-600 hover:text-indigo-900">
+                                            {{ $model->is_spam ? 'Not spam' : 'Mark as spam' }}
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty
@@ -66,7 +78,9 @@
 
                     <script>
                         $(document).ready( function () {
-                            $('#indexTable').DataTable();
+                            $('#indexTable').DataTable({
+                                order: [[3, 'desc']],
+                            });
                         } );
                     </script>
 
