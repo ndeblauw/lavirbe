@@ -2,29 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use Spatie\Honeypot\Exceptions\SpamException;
+use Spatie\Honeypot\SpamProtection;
 
 class ContactController extends Controller
 {
-    public function create()
+    public function create(): View
     {
         return view('contact.create', [
             'seo' => config('seo.pages.contact'),
         ]);
     }
 
-    public function store(Request $request)
+    public function store(ContactRequest $request, SpamProtection $spamProtection): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'min:2', 'max:255'],
-            'email' => ['required', 'string', 'email', 'min:3', 'max:255'],
-            'subject' => ['required', 'string', 'min:3', 'max:255'],
-            'message' => ['nullable', 'string', 'max:5000'],
+        $isSpam = $this->isSpam($request, $spamProtection);
+
+        Contact::create([
+            ...$request->validated(),
+            'is_spam' => $isSpam,
+            'spam_reason' => $isSpam ? 'honeypot' : null,
         ]);
 
-        Contact::create($validated);
-
         return redirect()->back()->with('success', 'Bedankt voor je bericht! Ik neem zo snel mogelijk contact met je op.');
+    }
+
+    private function isSpam(ContactRequest $request, SpamProtection $spamProtection): bool
+    {
+        try {
+            $spamProtection->check($request->all());
+
+            return false;
+        } catch (SpamException) {
+            return true;
+        }
     }
 }

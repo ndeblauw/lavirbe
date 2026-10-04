@@ -18,6 +18,7 @@
 
     <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
         @csrf
+        <x-honeypot />
 
         <div>
             <label for="name" class="block mb-1">Je naam</label>
@@ -53,11 +54,6 @@
             @error('message')
             <div class="text-red-600 text-base mt-1">{{ $message }}</div>
             @enderror
-        </div>
-
-        <div class="hidden" aria-hidden="true">
-            <label for="website">Laat dit veld leeg</label>
-            <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
         </div>
 
         <button type="submit"
