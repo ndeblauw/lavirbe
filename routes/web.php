@@ -39,7 +39,7 @@ Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
 Route::get('/tags/{tag:slug}', [TagController::class, 'show'])->name('tags.show');
 
 Route::get('contact', [ContactController::class, 'create'])->name('contact.create');
-Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
+Route::post('contact', [ContactController::class, 'store'])->middleware('throttle:contact')->name('contact.store');
 
 // Logged in pages
 Route::redirect('/dashboard', '/admin')->name('dashboard');
