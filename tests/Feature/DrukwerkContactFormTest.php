@@ -13,7 +13,7 @@ function drukwerkPayload(array $overrides = []): array
         'name' => 'Jan Jansen',
         'email' => 'jan@example.com',
         'phone' => '0470 12 34 56',
-        'subject' => 'Pins op maat',
+        'subject' => 'Stickers',
         'quantity' => 25,
         'message' => 'Graag een voorstel voor 25 pins.',
         'website' => '',
@@ -38,7 +38,7 @@ test('stores a legitimate drukwerk submission as a drukwerk contact', function (
         ->and($contact->type)->toBe(Contact::TYPE_DRUKWERK)
         ->and($contact->phone)->toBe('0470 12 34 56')
         ->and($contact->quantity)->toBe(25)
-        ->and($contact->subject)->toBe('Pins op maat')
+        ->and($contact->subject)->toBe('Stickers')
         ->and($contact->is_spam)->toBeFalse()
         ->and($contact->spam_reason)->toBeNull();
 });
@@ -76,6 +76,13 @@ test('rate limits drukwerk submissions per ip', function () {
     }
 
     $this->post(route('drukwerk.contact.store'), drukwerkPayload())->assertStatus(429);
+});
+
+test('rejects a product outside the rendered product list', function () {
+    $this->post(route('drukwerk.contact.store'), drukwerkPayload(['subject' => 'Niet in de lijst']))
+        ->assertSessionHasErrors('subject');
+
+    expect(Contact::count())->toBe(0);
 });
 
 test('validates the required drukwerk submission fields', function () {

@@ -16,7 +16,7 @@ class DrukwerkContactController extends Controller
     /**
      * @var list<string>
      */
-    private const PRODUCTS = [
+    public const PRODUCTS = [
         'Autostickers',
         'Baby slabbetjes',
         'Babyrompers',
