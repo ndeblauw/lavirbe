@@ -268,7 +268,7 @@ h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-backg
 
 
 <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="pages/quote.php">Vul hier een Vrijblijvende offerte aanvraag in</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/offerte">Vul hier een Vrijblijvende offerte aanvraag in</a></div>
 </div>
 
 
@@ -330,7 +330,7 @@ h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-backg
 
 
 <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="pages/quote.php">Vul hier een Vrijblijvende offerte aanvraag in</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/offerte">Vul hier een Vrijblijvende offerte aanvraag in</a></div>
 </div>
 </div>
 </div>
@@ -507,7 +507,7 @@ h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-backg
 
 
 <div class="wp-block-buttons is-content-justification-center is-layout-flex wp-container-core-buttons-is-layout-a89b3969 wp-block-buttons-is-layout-flex">
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="pages/quote.php">Vul hier een Vrijblijvende offerte aanvraag in</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/offerte">Vul hier een Vrijblijvende offerte aanvraag in</a></div>
 </div>
 </div>
 
