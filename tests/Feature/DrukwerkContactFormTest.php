@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Contact;
+use App\Notifications\NewContactSubmission;
+use Illuminate\Support\Facades\Notification;
 use Spatie\Honeypot\EncryptedTime;
 
 /**
@@ -41,6 +43,28 @@ test('stores a legitimate drukwerk submission as a drukwerk contact', function (
         ->and($contact->subject)->toBe('Stickers')
         ->and($contact->is_spam)->toBeFalse()
         ->and($contact->spam_reason)->toBeNull();
+});
+
+test('notifies info@lavir.be about a legitimate offerte submission', function () {
+    Notification::fake();
+
+    $this->post(route('drukwerk.contact.store'), drukwerkPayload())->assertRedirect();
+
+    Notification::assertSentOnDemand(
+        NewContactSubmission::class,
+        function (NewContactSubmission $notification, array $channels, $notifiable) {
+            return $notification->contact->type === Contact::TYPE_DRUKWERK
+                && $notifiable->routes['mail'] === 'info@lavir.be';
+        },
+    );
+});
+
+test('does not notify about a spam offerte submission', function () {
+    Notification::fake();
+
+    $this->post(route('drukwerk.contact.store'), drukwerkPayload(['website' => 'http://spam.example']))->assertRedirect();
+
+    Notification::assertNothingSent();
 });
 
 test('flags drukwerk submissions that fill the honeypot field', function () {

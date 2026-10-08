@@ -2,6 +2,8 @@
 
 use App\Models\Contact;
 use App\Models\User;
+use App\Notifications\NewContactSubmission;
+use Illuminate\Support\Facades\Notification;
 use Spatie\Honeypot\EncryptedTime;
 
 /**
@@ -44,6 +46,28 @@ it('stores a legitimate contact submission', function () {
     expect($contact)->not->toBeNull()
         ->and($contact->is_spam)->toBeFalse()
         ->and($contact->spam_reason)->toBeNull();
+});
+
+it('notifies info@lavir.be about a legitimate submission', function () {
+    Notification::fake();
+
+    $this->post(route('contact.store'), contactPayload())->assertRedirect();
+
+    Notification::assertSentOnDemand(
+        NewContactSubmission::class,
+        function (NewContactSubmission $notification, array $channels, $notifiable) {
+            return $notification->contact->email === 'jan@example.com'
+                && $notifiable->routes['mail'] === 'info@lavir.be';
+        },
+    );
+});
+
+it('does not notify about a spam contact submission', function () {
+    Notification::fake();
+
+    $this->post(route('contact.store'), contactPayload(['website' => 'http://spam.example']))->assertRedirect();
+
+    Notification::assertNothingSent();
 });
 
 it('flags submissions that fill the honeypot field', function () {
