@@ -44,6 +44,10 @@
                                         @if($column === 'title')
                                             @php $titlefield = $config->titleField() @endphp
                                             {{$model->$titlefield}}
+                                        @elseif($column === 'type')
+                                            <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold @if($model->type === \App\Models\Contact::TYPE_DRUKWERK) bg-black text-white @else bg-teal-100 text-teal-800 @endif">
+                                                {{ ucfirst($model->type) }}
+                                            </span>
                                         @elseif($column === 'is_spam')
                                             @if($model->is_spam)
                                                 <span class="px-2 py-1 text-xs font-semibold text-red-800 bg-red-100 rounded">{{ $model->spam_reason ?? 'spam' }}</span>
@@ -79,7 +83,7 @@
                     <script>
                         $(document).ready( function () {
                             $('#indexTable').DataTable({
-                                order: [[3, 'desc']],
+                                order: [[4, 'desc']],
                             });
                         } );
                     </script>
