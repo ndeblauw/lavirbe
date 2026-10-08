@@ -3,7 +3,9 @@
 use App\Models\Contact;
 use App\Models\User;
 use App\Notifications\NewContactSubmission;
+use Illuminate\Notifications\SendQueuedNotifications;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Queue;
 use Spatie\Honeypot\EncryptedTime;
 
 /**
@@ -68,6 +70,14 @@ it('does not notify about a spam contact submission', function () {
     $this->post(route('contact.store'), contactPayload(['website' => 'http://spam.example']))->assertRedirect();
 
     Notification::assertNothingSent();
+});
+
+it('queues the notification instead of sending it during the request', function () {
+    Queue::fake();
+
+    $this->post(route('contact.store'), contactPayload())->assertRedirect();
+
+    Queue::assertPushed(SendQueuedNotifications::class);
 });
 
 it('flags submissions that fill the honeypot field', function () {
