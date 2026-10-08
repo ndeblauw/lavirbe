@@ -58,7 +58,7 @@
         <h2>Offerte aanvraag</h2>
         <p class="intro">
             Vul hieronder het offerteformulier in, en ontvang vrijblijvend een offerte in je mailbox.
-            We streven er naar om binnen de 24u een offerte te bezorgen.
+            We streven ernaar om binnen de 24 uur een offerte te bezorgen.
         </p>
 
         @if (session('success'))
