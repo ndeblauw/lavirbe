@@ -7,10 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
 {
+    public const TYPE_LAVIR = 'lavir';
+
+    public const TYPE_DRUKWERK = 'drukwerk';
+
     protected $fillable = [
+        'type',
         'name',
         'email',
+        'phone',
         'subject',
+        'quantity',
         'message',
         'is_spam',
         'spam_reason',
@@ -19,6 +26,7 @@ class Contact extends Model
     protected function casts(): array
     {
         return [
+            'quantity' => 'integer',
             'is_spam' => 'boolean',
         ];
     }

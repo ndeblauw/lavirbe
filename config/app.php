@@ -56,6 +56,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Drukwerk Subdomain
+    |--------------------------------------------------------------------------
+    |
+    | The host on which the LAVIR Drukwerk site is served. Defaults to the
+    | production domain; override it locally (e.g. drukwerk.lavir.test).
+    |
+    */
+
+    'drukwerk_domain' => env('DRUKWERK_DOMAIN', 'drukwerk.lavir.be'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------
     |

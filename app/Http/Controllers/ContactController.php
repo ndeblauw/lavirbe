@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Concerns\DetectsHoneypotSpam;
 use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
-use Spatie\Honeypot\Exceptions\SpamException;
 use Spatie\Honeypot\SpamProtection;
 
 class ContactController extends Controller
 {
+    use DetectsHoneypotSpam;
+
     public function create(): View
     {
         return view('contact.create', [
@@ -24,21 +26,11 @@ class ContactController extends Controller
 
         Contact::create([
             ...$request->validated(),
+            'type' => Contact::TYPE_LAVIR,
             'is_spam' => $isSpam,
             'spam_reason' => $isSpam ? 'honeypot' : null,
         ]);
 
         return redirect()->back()->with('success', 'Bedankt voor je bericht! Ik neem zo snel mogelijk contact met je op.');
-    }
-
-    private function isSpam(ContactRequest $request, SpamProtection $spamProtection): bool
-    {
-        try {
-            $spamProtection->check($request->all());
-
-            return false;
-        } catch (SpamException) {
-            return true;
-        }
     }
 }

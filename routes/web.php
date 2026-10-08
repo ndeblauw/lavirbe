@@ -13,6 +13,8 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController as AdminDashboardController;
+use App\Http\Controllers\DrukwerkContactController;
+use App\Http\Controllers\DrukwerkController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\SitemapController;
@@ -21,6 +23,14 @@ use App\Http\Controllers\Userzone\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
+
+// Drukwerk subdomain (static site)
+Route::domain(config('app.drukwerk_domain'))->group(function () {
+    Route::get('/', [DrukwerkController::class, 'index'])->name('drukwerk.index');
+
+    Route::get('/offerte', [DrukwerkContactController::class, 'create'])->name('drukwerk.contact.create');
+    Route::post('/offerte', [DrukwerkContactController::class, 'store'])->middleware('throttle:contact')->name('drukwerk.contact.store');
+});
 
 // Public pages
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');

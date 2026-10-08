@@ -12,7 +12,7 @@ class Contact extends BlueAdminModel
 
     public $title_field = 'subject';
 
-    public $indexTableColumns = ['name', 'email', 'subject', 'created_at', 'is_spam'];
+    public $indexTableColumns = ['name', 'email', 'subject', 'created_at', 'is_spam', 'type'];
 
     public $color = 'blue';
 }
