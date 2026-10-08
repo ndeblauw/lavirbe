@@ -1,7 +1,7 @@
 <?php
 
 test('drukwerk subdomain returns the static home page', function () {
-    $response = $this->get('http://drukwerk.lavir.be/');
+    $response = $this->get(route('drukwerk.index'));
 
     $response->assertOk()
         ->assertSee('LAVIR Drukwerk', false)
@@ -9,7 +9,7 @@ test('drukwerk subdomain returns the static home page', function () {
 });
 
 test('drukwerk home page references locally hosted assets', function () {
-    $response = $this->get('http://drukwerk.lavir.be/');
+    $response = $this->get(route('drukwerk.index'));
 
     $response->assertOk()
         ->assertSee('/img/drukwerk/products/tapijt.png', false)
