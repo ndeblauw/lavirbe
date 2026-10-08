@@ -13,6 +13,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController as AdminDashboardController;
+use App\Http\Controllers\DrukwerkController;
 use App\Http\Controllers\FormationController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\SitemapController;
@@ -21,6 +22,11 @@ use App\Http\Controllers\Userzone\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
+
+// Drukwerk subdomain (static site)
+Route::domain('drukwerk.lavir.test')->group(function () {
+    Route::get('/', [DrukwerkController::class, 'index'])->name('drukwerk.index');
+});
 
 // Public pages
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
