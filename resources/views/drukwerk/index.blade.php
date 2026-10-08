@@ -168,7 +168,7 @@ h1:where(.wp-block-heading).has-background,h2:where(.wp-block-heading).has-backg
 <!--start callback custom--!>
 
 <script type="importmap" id="wp-importmap">
-{"imports":{"@wordpress/interactivity":"https://drukwerk.lavir.be/wp-includes/js/dist/script-modules/interactivity/index.min.js?ver=66c613f68580994bb00a"}}
+{"imports":{"@wordpress/interactivity":"/js/drukwerk/index.min.js?ver=66c613f68580994bb00a"}}
 </script>
 <link rel="modulepreload" href="/js/drukwerk/index.min.js?ver=66c613f68580994bb00a" id="@wordpress/interactivity-js-modulepreload" fetchpriority="low">
 <style class='wp-fonts-local'>
