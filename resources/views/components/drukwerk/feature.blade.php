@@ -8,7 +8,13 @@
     'buttonText' => 'Mail ons',
 ])
 
-<section class="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-12 md:grid-cols-[minmax(0,35%)_1fr]">
+@php
+    $columns = $reverse
+        ? 'md:grid-cols-[1fr_minmax(0,33%)]'
+        : 'md:grid-cols-[minmax(0,35%)_1fr]';
+@endphp
+
+<section class="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-12 {{ $columns }}">
     <figure class="{{ $reverse ? 'md:order-2' : '' }}">
         <img src="{{ $image }}" alt="{{ $imageAlt }}" class="w-full rounded-lg" loading="lazy">
     </figure>
