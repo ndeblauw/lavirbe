@@ -2,7 +2,7 @@
     'eyebrow',
     'title',
     'image',
-    'imageAlt' => '',
+    'imageAlt' => null,
     'reverse' => false,
     'buttonHref' => null,
     'buttonText' => 'Mail ons',
@@ -12,11 +12,13 @@
     $columns = $reverse
         ? 'md:grid-cols-[1fr_minmax(0,33%)]'
         : 'md:grid-cols-[minmax(0,35%)_1fr]';
+
+    $alt = $imageAlt ?? $title;
 @endphp
 
 <section class="mx-auto grid w-full max-w-6xl items-center gap-10 px-5 py-12 {{ $columns }}">
     <figure class="{{ $reverse ? 'md:order-2' : '' }}">
-        <img src="{{ $image }}" alt="{{ $imageAlt }}" class="w-full rounded-lg" loading="lazy">
+        <img src="{{ $image }}" alt="{{ $alt }}" class="w-full rounded-lg" loading="lazy">
     </figure>
 
     <div class="{{ $reverse ? 'md:order-1' : '' }}">
