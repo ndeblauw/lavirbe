@@ -109,7 +109,7 @@
         </p>
 
         <div class="mt-8">
-            <x-drukwerk.product-list :products="$products" />
+            <x-drukwerk.product-list :products="$products" more />
         </div>
     </section>
 </x-drukwerk.layout>

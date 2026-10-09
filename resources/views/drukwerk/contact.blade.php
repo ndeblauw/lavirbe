@@ -40,6 +40,7 @@
                     @foreach ($products as $product)
                         <option value="{{ $product }}" @selected(old('subject') === $product)>{{ $product }}</option>
                     @endforeach
+                    <option value="{{ $otherProduct }}" @selected(old('subject') === $otherProduct)>{{ $otherProduct }}</option>
                 </select>
             </x-drukwerk.field>
 

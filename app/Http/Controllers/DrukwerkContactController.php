@@ -19,6 +19,7 @@ class DrukwerkContactController extends Controller
     {
         return view('drukwerk.contact', [
             'products' => config('drukwerk.products'),
+            'otherProduct' => config('drukwerk.other_product'),
         ]);
     }
 

@@ -117,7 +117,17 @@ return [
         'Vloerstickers',
         'Wijndozen',
         'Zonnebrillen',
-        '...',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Other product
+    |--------------------------------------------------------------------------
+    |
+    | The catch-all option for requests that do not match a named product.
+    |
+    */
+
+    'other_product' => 'andere',
 
 ];

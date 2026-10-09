@@ -116,6 +116,12 @@ test('validates the required drukwerk submission fields', function () {
     expect(Contact::count())->toBe(0);
 });
 
+test('accepts the catch-all other product', function () {
+    $this->post(route('drukwerk.contact.store'), drukwerkPayload(['subject' => 'andere']))
+        ->assertRedirect()
+        ->assertSessionHasNoErrors();
+});
+
 test('the offerte page does not load the third-party widget', function () {
     $this->get(route('drukwerk.contact.create'))
         ->assertOk()
