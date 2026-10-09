@@ -117,7 +117,7 @@ return [
         'Vloerstickers',
         'Wijndozen',
         'Zonnebrillen',
-        'andere',
+        '...',
     ],
 
 ];

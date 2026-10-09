@@ -101,7 +101,7 @@
         </x-drukwerk.button>
     </div>
 
-    <section class="mx-auto w-full max-w-4xl px-5 py-12">
+    <section class="mx-auto w-full max-w-6xl px-5 py-12">
         <h2 class="text-3xl font-semibold text-white sm:text-4xl">Zoek je iets anders?</h2>
         <p class="mt-4 text-lg">
             Het aanbod van LAVIR is quasi oneindig. Denk je aan iets om te bedrukken? Wij kunnen het
