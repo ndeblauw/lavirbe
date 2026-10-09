@@ -115,3 +115,9 @@ test('validates the required drukwerk submission fields', function () {
 
     expect(Contact::count())->toBe(0);
 });
+
+test('the offerte page does not load the third-party widget', function () {
+    $this->get(route('drukwerk.contact.create'))
+        ->assertOk()
+        ->assertDontSee('popup.print.com', false);
+});

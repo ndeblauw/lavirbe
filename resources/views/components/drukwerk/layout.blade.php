@@ -1,6 +1,7 @@
 @props([
     'title' => 'LAVIR Drukwerk',
     'description' => 'Drukwerk, papier, textiel, buttons, patches, gadgets. LAVIR Drukwerk voorziet het juiste product voor jouw project.',
+    'widget' => false,
 ])
 
 <!DOCTYPE html>
@@ -31,7 +32,9 @@
 
     <x-drukwerk.footer />
 
-    <div id="print-widget-target" data-print-id="{{ config('drukwerk.widget_id') }}"></div>
-    <script src="https://popup.print.com/widget.js?id={{ config('drukwerk.widget_id') }}"></script>
+    @if ($widget)
+        <div id="print-widget-target" data-print-id="{{ config('drukwerk.widget_id') }}"></div>
+        <script src="https://popup.print.com/widget.js?id={{ config('drukwerk.widget_id') }}"></script>
+    @endif
 </body>
 </html>

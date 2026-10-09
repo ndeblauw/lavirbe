@@ -1,4 +1,4 @@
-<x-drukwerk.layout title="LAVIR Drukwerk">
+<x-drukwerk.layout title="LAVIR Drukwerk" widget>
     <x-drukwerk.hero />
 
     <x-drukwerk.feature
