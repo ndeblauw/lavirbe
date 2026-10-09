@@ -8,6 +8,8 @@ class DrukwerkController extends Controller
 {
     public function index(): View
     {
-        return view('drukwerk.index');
+        return view('drukwerk.index', [
+            'products' => config('drukwerk.products'),
+        ]);
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Controllers\DrukwerkContactController;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -22,7 +21,7 @@ class DrukwerkContactRequest extends FormRequest
             'name' => ['required', 'string', 'min:2', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['nullable', 'string', 'max:255'],
-            'subject' => ['required', 'string', Rule::in(DrukwerkContactController::PRODUCTS)],
+            'subject' => ['required', 'string', Rule::in(config('drukwerk.products'))],
             'quantity' => ['required', 'integer', 'min:1', 'max:50000'],
             'message' => ['nullable', 'string', 'max:5000'],
         ];
