@@ -3,6 +3,11 @@
     :description="$seo['description'] ?? null"
 >
 
+    <p class="mb-4">
+        Wil je op de hoogte blijven van tips en nieuws?
+        <a href="#nieuwsbrief" class="underline underline-offset-2 hover:decoration-dotted">Schrijf je in op onze nieuwsbrief</a>.
+    </p>
+
     <p class="mb-8 leading-relaxed">
         Stel hieronder via het formulier een vraag over ons aanbod, of vraag een telefonisch gesprek aan.
         Vergeet in dat laatste geval zeker niet je nummer toe te voegen en de momenten waarop ik je het beste kan bereiken.
@@ -16,7 +21,7 @@
         </div>
     @endif
 
-    <form action="{{ route('contact.store') }}" method="POST" class="space-y-6">
+    <form action="{{ route('contact.store') }}" method="POST" class="space-y-6 mb-16">
         @csrf
         <x-honeypot />
 

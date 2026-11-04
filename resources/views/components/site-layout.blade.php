@@ -61,6 +61,8 @@
 
         <x-customer-logos/>
 
+        <x-newsletter/>
+
         <x-site-layout-footer/>
 
     </div>
